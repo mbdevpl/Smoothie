@@ -25,16 +25,20 @@ else:unix:DEFINES += LINUX
 CONFIG(debug, debug|release): DEFINES += DEBUG
 else:CONFIG(release, debug|release): DEFINES += RELEASE
 
-DEPENDPATH += "D:/Projects/Cpp/Libraries/Includes/Boost"
-INCLUDEPATH += "D:/Projects/Cpp/Libraries/Includes/Boost"
+win32 {
+	DEPENDPATH += "D:/Projects/Cpp/Libraries/Includes/Boost"
+	INCLUDEPATH += "D:/Projects/Cpp/Libraries/Includes/Boost"
 
-DEPENDPATH += "D:/Projects/Cpp/Libraries/Includes/OpenGL"
-INCLUDEPATH += "D:/Projects/Cpp/Libraries/Includes/OpenGL"
+	DEPENDPATH += "D:/Projects/Cpp/Libraries/Includes/OpenGL"
+	INCLUDEPATH += "D:/Projects/Cpp/Libraries/Includes/OpenGL"
 
-DEPENDPATH += "D:/Projects/Cpp/Libraries/Includes/LibXML"
-INCLUDEPATH += "D:/Projects/Cpp/Libraries/Includes/LibXML"
+	DEPENDPATH += "D:/Projects/Cpp/Libraries/Includes/LibXML"
+	INCLUDEPATH += "D:/Projects/Cpp/Libraries/Includes/LibXML"
 
-LIBS += -L$$quote(D:/Projects/Cpp/Libraries) -lfreetype -lftgl -llibxml2
+	LIBS += -L$$quote(D:/Projects/Cpp/Libraries) -lfreetype -lftgl -llibxml2
+} else {
+	LIBS += -lfreetype -lftgl -llibxml2
+}
 
 CONFIG += precompile_header
 
@@ -43,13 +47,15 @@ PRECOMPILED_HEADER = common.view.h
 SOURCES += \
 	main.cpp \
 	MainWindow.cpp \
+	PointFrame.cpp \
+	NewMeshDialog.cpp \
+	MatricesDialog.cpp \
 	Point2D.cpp \
 	Point3D.cpp \
 	Plane.cpp \
 	Mesh.cpp \
 	MeshView.cpp \
 	FluidFlowView.cpp \
-	PointFrame.cpp \
 	RectangularMesh.cpp \
 	TriangularMesh.cpp \
 	MeshPoint.cpp \
@@ -57,21 +63,21 @@ SOURCES += \
 	FluidFlowCalculator.cpp \
 	TriangukarFluidFlowCalculator.cpp \
 	RectangularFluidFlowCalculator.cpp \
-	NewMeshDialog.cpp \
-	MatricesDialog.cpp \
-    MeshExamples.cpp \
-    CalculatorThread.cpp
+	MeshExamples.cpp \
+	CalculatorThread.cpp
 
 HEADERS += \
 	common.view.h \
 	MainWindow.hpp \
+	PointFrame.hpp \
+	NewMeshDialog.hpp \
+	MatricesDialog.hpp \
 	Point2D.hpp \
 	Point3D.hpp \
 	Plane.hpp \
 	Mesh.hpp \
 	MeshView.hpp \
 	FluidFlowView.hpp \
-	PointFrame.hpp \
 	RectangularMesh.hpp \
 	TriangularMesh.hpp \
 	MeshPoint.hpp \
@@ -79,12 +85,16 @@ HEADERS += \
 	FluidFlowCalculator.hpp \
 	TriangukarFluidFlowCalculator.hpp \
 	RectangularFluidFlowCalculator.hpp \
-	NewMeshDialog.hpp \
-	MatricesDialog.hpp \
-    MeshExamples.hpp \
-    CalculatorThread.hpp
+	MeshExamples.hpp \
+	CalculatorThread.hpp
 
 FORMS += MainWindow.ui \
 	PointFrame.ui \
-    NewMeshDialog.ui \
-    MatricesDialog.ui
+	NewMeshDialog.ui \
+	MatricesDialog.ui
+
+OTHER_FILES += \
+	../.gitignore \
+	../README.md \
+	../LICENSE.md \
+	../doc/Smoothie.doxyfile \
