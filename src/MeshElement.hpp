@@ -3,6 +3,9 @@
 #include "common.view.h"
 #include "MeshPoint.hpp"
 
+/*!
+ * \brief Mesh element keeps references to its vertices.
+ */
 class MeshElement
 {
 public:

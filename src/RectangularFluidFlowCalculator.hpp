@@ -3,6 +3,9 @@
 #include "FluidFlowCalculator.hpp"
 #include "RectangularMesh.hpp"
 
+/*!
+ * \brief Specification of FluidFlowCalculator for rectangular meshes.
+ */
 class RectangularFluidFlowCalculator : public FluidFlowCalculator
 {
 public:

@@ -2,6 +2,9 @@
 
 #include "Mesh.hpp"
 
+/*!
+ * \brief Specification of Mesh, for which all elements are rectangular (have 4 vertices).
+ */
 class RectangularMesh : public Mesh
 {
 public:

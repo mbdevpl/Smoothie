@@ -2,6 +2,9 @@
 
 #include "Point3D.hpp"
 
+/*!
+ * \brief A vertex of a mesh, derives from 3-dimensional point, but contains additional characteristics.
+ */
 class MeshPoint : public Point3D
 {
 public:

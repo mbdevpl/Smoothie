@@ -3,6 +3,9 @@
 #include "FluidFlowCalculator.hpp"
 #include "TriangularMesh.hpp"
 
+/*!
+ * \brief Specification of FluidFlowCalculator for triangular meshes.
+ */
 class TriangukarFluidFlowCalculator : public FluidFlowCalculator
 {
 public:

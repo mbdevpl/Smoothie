@@ -2,6 +2,9 @@
 
 #include "Mesh.hpp"
 
+/*!
+ * \brief Specification of Mesh, for which all elements are triangular (have 3 vertices).
+ */
 class TriangularMesh : public Mesh
 {
 public:

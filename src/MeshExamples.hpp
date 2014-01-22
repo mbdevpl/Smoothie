@@ -3,6 +3,9 @@
 #include "TriangularMesh.hpp"
 #include "RectangularMesh.hpp"
 
+/*!
+ * \brief Set of predefined examples for Smoothie.
+ */
 class MeshExamples
 {
 private:

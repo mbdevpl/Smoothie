@@ -1,5 +1,8 @@
 #pragma once
 
+/*!
+ * \brief 2-dimensional point.
+ */
 struct Point2D
 {
 public:

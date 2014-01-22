@@ -2,6 +2,9 @@
 
 #include "Point2D.hpp"
 
+/*!
+ * \brief 3-dimensional point, derived from the 2-dimensional.
+ */
 struct Point3D : public Point2D
 {
 public:
