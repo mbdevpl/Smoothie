@@ -1,0 +1,14 @@
+#TeXlipse project settings
+#Tue Jan 21 23:58:08 CET 2014
+markTmpDer=true
+builderNum=2
+outputDir=
+makeIndSty=
+bibrefDir=
+outputFormat=pdf
+tempDir=tmp
+mainTexFile=smoothie.tex
+outputFile=Smoothie_theory.pdf
+langSpell=en
+markDer=true
+srcDir=

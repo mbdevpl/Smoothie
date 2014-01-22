@@ -1,0 +1,278 @@
+\documentclass[a4paper,12pt]{article}
+
+% very small margins (around 1.5cm)
+% disable package geometry if you use this
+\usepackage{fullpage}
+
+% some mathematical symbols
+\usepackage{amsmath}
+
+% mathematical symbols
+% conflicts with package program
+\usepackage{amssymb}
+
+% url addresses using \url{http://domain.com/}
+\usepackage{url}
+
+% use \includegraphics[scale=1.00]{file.jpg} for images
+\usepackage{graphicx}
+
+% for proper placement of floating figures
+\usepackage{float}
+
+\usepackage{multirow}
+%\usepackage{pseudocode}
+%\usepackage{booktabs}
+%\usepackage{color}
+%\usepackage{algorithmic} %pseudocode
+%\usepackage{algorithm} %pseudocode as whole procedures
+%\usepackage{program} %more sophisticated pseudocode
+
+\begin{document}
+
+\title{Static fluid~flow~simulation using~the~finite~element~method}
+\date{January 10, 2014}
+\author{Mateusz Bysiek}
+\maketitle
+
+\begin{footnotesize}
+
+Written by Mateusz Bysiek of Computer~Science, Faculty~of~Mathematics~and~Information~Science,
+Warsaw~University~of~Technology.
+
+bysiekm at student dot mini dot pw dot edu dot pl
+
+\end{footnotesize}
+
+\section{Task}
+
+Write a computer program that implements finite element method for static fluid flow, for uniorm triangular and
+rectangular meshes. Use Laplace's equation.
+
+\section{Theoretical introduction}
+
+\subsection{Static fluid flow}
+
+Static fluid flow can be understood as the potential of how the water will flow given some initial conditions. It is
+important to note that the task of static fluid flow simulation is equivalent to static heat transfer simulation. And as
+such, it can be understood as how the temperature will be distributed across space given some initial conditions.
+\cite{wiki_heat_transfer}
+
+For example:
+
+
+We have a generally ``neutral'' environment, for example some place few meters underground. Plus, we have some
+relatively hot places in our environment. They can be any source of heat, for example some pipes with hot water. Also,
+we have some relatively cold places in our environment. They can be any hypothetical devices that suck in heat, or just
+some pipes with coolant, or cold water. What characterizes such environment is that it is static -- the water in the
+pipes always has the same temperature.
+
+Using static flow calculations, we can predict exaclty what temperature will be at each point in our environment. You
+may notice, that normally such predictions would require you to make calculations for each point, and since heat
+propagates in the ground, after you calculate temperature at some point you have to adjust temperature at all
+neighbouring points. This leads to either infinite calculations, or if you know how to handle such problems it leads to
+partial differential equations.
+
+Differential equations are solvable, but first of all are complicated, so they require large computational power. Second
+of all, you rarely need to know exact temperature in every place around. Usually some regions are of more interest than
+others, and more importantly, even in these regions you probably don't need to know the temperature at every single
+point.
+
+\subsection{Finite element method}
+
+And that is where the finite element method comes in. For example, for you may want to know the approximate temperature
+of every $m^2$ of the ground. You can divide your whole environment into fragments called \emph{elements}. In our
+example, you may call each square meter the \emph{element}. \cite{wiki_finite_element_method}
+
+To determine what temperature is at each location, is the same as to solve the Laplace's equation for given conditions.
+\cite{wiki_laplaces_equation}
+
+\[ \Delta \phi =  \nabla^2 \phi = 0 \]
+
+Specifically, in 2 dimensions the equation has a certain form.
+
+\[ \frac{\partial^2 \psi}{\partial x^2} + \frac{\partial^2 \psi}{\partial y^2} \equiv \psi_{xx} + \psi_{yy} = 0 \]
+
+This means that our problem is a very specific case, and even partial differential equations are simplified.  
+
+\subsubsection{Triangular elements}
+
+Trianglar elements are those that have 3 vertices.
+
+\subsubsection{Rectangular elements}
+
+Rectangular elements are those that have 4 vertices.
+
+\section{Implementation}
+
+Computational part is implemented in C++, user interface is made using Qt, while the visualization itself is made using
+OpenGL.
+
+\subsection{Technologies}
+
+The FEM computations are implemented in C++11. Full list of technologies used for computation:
+
+\begin{itemize}
+  \item C++11 -- backbone of the implementation
+  \item Boost uBLAS (Basic Linear Algebra Library) -- part of Boost dedicated to linear algebra and matrix operations
+\end{itemize}
+
+The visual part of the solution is implemented using OpenGL. Full list of technologies used for visualization:
+
+\begin{itemize}
+  \item Qt -- for GUI (Graphical User Interface)
+  \item OpenGL -- backbone of 3D visualization
+  \item freetype -- for FreeType fonts displayed in OpenGL environment
+  \item ftgl -- for displaying text in OpenGL environment.
+\end{itemize}
+
+Other general-purpose technologies used:
+
+\begin{itemize}
+  \item Doxygen -- for technical documentation
+  \item LaTeX -- for theoretical documentation and user guide
+  \item libxml2 -- for file I/O
+\end{itemize}
+
+\subsection{Algorithm}
+
+The program starts with measuring the most important parameters of the mesh:
+
+\begin{itemize}
+
+  \item Number of vertices in mesh is $N$.
+
+  \item Total number of elements (i.e. triangles or rectangles) is $E$.
+
+  \item Number of vertices in each element of the mesh is $V$ -- for triangular elements $V$ is $3$, for rectangular it
+  is $4$.
+
+  \item Number of vertices that have defined boundary condition is $B$.
+
+\end{itemize}
+
+Three main matrices are creates:
+
+\begin{itemize}
+
+  \item A stiffness matrix $S$, of size $N \times N$.
+
+  \item A mass matrix $M$, of size $1 \times N$ -- in other words a $N$-dimensional vector.
+
+  \item A result matrix $R$, of size $1 \times N$
+
+\end{itemize}
+
+All of the values in matrices $S$ and $M$ are set to zero.
+
+Then, a supporting matrix, local stiffness matrix $L$ of size $V \times V$ is created.
+
+$L$ is set to precalculated results of two-dimensional integration so that for each element the correct ``shape'' of
+importance of each vertex is applied.
+
+\begin{itemize}
+
+  \item For triangulr elements:
+  \[
+  \left| \begin{array}{rrr}
+  %\left[ \begin{aligned}
+  -0.18 &  0.09 &  0.09 \\
+   0.09 & -0.17 &  0.08 \\
+   0.09 &  0.08 & -0.17 \\
+  %\end{aligned} \right]
+  \end{array} \right|
+  \]
+
+  \item For rectangular elements:
+  \[
+  \left| \begin{array}{rrrr}
+   0.666667 & -0.166667 & -0.333333 & -0.166667 \\
+  -0.166667 &  0.666667 & -0.166667 & -0.333333 \\
+  -0.333333 & -0.166667 &  0.666667 & -0.166667 \\
+  -0.166667 & -0.333333 & -0.166667 &  0.666667 \\
+  \end{array} \right|
+  \]
+
+\end{itemize}
+
+After that, iteration over all $E$ elements starts. For each element the same below procedure is repeated:
+
+\begin{itemize}
+
+  \item a ``multiplier'' is calculated from the determinant of the element. That ``multipier'' depends directly on the
+  area of the element, i.e. if all elements of the mesh have the same size, all ``multipliers'' are identical.
+
+  \item to the stiffnes matrix $S$, the partial results of $L$ times the ``multiplier'' are added.
+
+\end{itemize}
+
+Then, iteration over all $B$ vertices that have boundary condition starts. For each such point the following is done:
+
+\begin{itemize}
+
+  \item Each vertex has a corresponding row of the stiffness matrix $S$, since height of $S$ is equal to $N$. The row
+  that corresponds to current $i$th boundary-conditioned vertex is set to the vector$(0,\ldots,1,\ldots,0)$ where the
+  $1$ is placed at $i$th place. Incidentally it is on the diagonal of the stiffness matrix.
+  
+  \item Each such vertex also has a corresponding element of of mass matrix $M$, since its height is also equal to $N$.
+  The value at $i$th place of $M$ is set to the boundary condition (i.e. the ``z'' coordinate of the vetrex).
+
+\end{itemize}
+
+At this point, the stiffness matrix $S$ and mass matrix $M$ are both ready, and the resulting matrix $R$ is calculated
+by left division of $S$ by $M$.
+
+\section{Examples}
+
+\subsection{Trivial}
+
+In the trivial case, where there are no conditions defined at all, the software is behaving nicely by not altering the
+input with any noise.
+
+\subsection{Bounary conditions}
+
+If the whole border of the mesh has defined boundary conditions, the software of course manages to compute the final
+result. For most reasonable mesh sizes (up to approx. 15 x 15) the computation happens in real-time.
+
+\subsection{Free boundaries}
+
+The program manages to compute correctly in situations where some part of border has no boundary conditions.
+
+\subsection{Several other examples}
+
+I would like to include some nice examples of smoothened planes, which in the end inspired the name of the application. 
+
+\begin{thebibliography}{9}
+
+\bibitem{wiki_heat_transfer}
+  Heat transfer,
+  Wikipedia,
+  \url{https://en.wikipedia.org/wiki/Heat_transfer},
+  accessed 2014-01-22
+
+\bibitem{wiki_fluid_statics}
+  Fluid statics,
+  Wikipedia,
+  \url{https://en.wikipedia.org/wiki/Fluid_statics},
+  accessed 2014-01-22
+
+\bibitem{wiki_finite_element_method}
+  Finite element method,
+  Wikipedia,
+  \url{https://en.wikipedia.org/wiki/Finite_element_method},
+  accessed 2014-01-22
+
+\bibitem{wiki_laplaces_equation}
+  Laplace's equation,
+  Wikipedia,
+  \url{https://en.wikipedia.org/wiki/Laplace's_equation},
+  accessed 2014-01-22
+
+%https://en.wikipedia.org/wiki/Stiff_equation
+%https://en.wikipedia.org/wiki/Stiffness_matrix
+%https://en.wikipedia.org/wiki/Mass_matrix
+%https://en.wikipedia.org/wiki/Division_%28mathematics%29#Of_matrices
+
+\end{thebibliography}
+
+\end{document}
