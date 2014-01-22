@@ -1,5 +1,5 @@
 Smoothie: static fluid/heat flow simulator
-Copyright (C) 2013  Mateusz Bysiek, http://mbdev.pl/
+Copyright (C) 2013-2014  Mateusz Bysiek, http://mbdev.pl/
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

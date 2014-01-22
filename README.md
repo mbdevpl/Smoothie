@@ -7,7 +7,7 @@ Static fluid/heat flow simulator.
 
 ## Author
 
-Copyright (C) 2013  Mateusz Bysiek, http://mbdev.pl/
+Copyright (C) 2013-2014  Mateusz Bysiek, http://mbdev.pl/
 
 ## More information
 
