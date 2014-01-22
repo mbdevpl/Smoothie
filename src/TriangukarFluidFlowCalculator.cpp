@@ -17,6 +17,20 @@ void TriangukarFluidFlowCalculator::calculate()
 		for(size_t y = 0; y < elementSize; ++y)
 			localStiffnessMatrix(x, y) = 0.0;
 
+	for(size_t x = 0; x < elementSize; ++x)
+		for(size_t y = 0; y < elementSize; ++y)
+		{
+			localStiffnessMatrix(x, y) = localIntegral(x, y);
+		}
+
+#ifdef DEBUG
+	{
+		std::stringstream ss;
+		ss << "localStiffnessMatrix = " << localStiffnessMatrix << std::endl;
+		qDebug() << ss.str().c_str();
+	}
+#endif
+
 	for(size_t i = 0; i < elementsCount; ++i)
 	{
 		currentElementIndex = i;
@@ -33,26 +47,21 @@ void TriangukarFluidFlowCalculator::calculate()
 			throw new std::runtime_error("multiplier (the jacobian) should not be zero");
 
 		for(size_t x = 0; x < elementSize; ++x)
-			for(size_t y = 0; y < elementSize; ++y)
-			{
-				localStiffnessMatrix(x, y) = localIntegral(x, y) * multiplier;
-			}
-
-		for(size_t x = 0; x < elementSize; ++x)
 		{
 			MeshPoint* ptx = element.points.at(x);
 			for(size_t y = 0; y < elementSize; ++y)
 			{
 				MeshPoint* pty = element.points.at(y);
-				stiffnessMatrix(ptx->index, pty->index) += localStiffnessMatrix(x, y);
+				stiffnessMatrix(ptx->index, pty->index) += localStiffnessMatrix(x, y) * multiplier;
 			}
 		}
 
 #ifdef DEBUG
-		std::stringstream ss;
-		ss << "localStiffnessMatrix = " << localStiffnessMatrix << std::endl;
-		ss << "stiffnessMatrix = " << stiffnessMatrix;
-		qDebug() << ss.str().c_str();
+		{
+			std::stringstream ss;
+			ss << "stiffnessMatrix = " << stiffnessMatrix;
+			qDebug() << ss.str().c_str();
+		}
 #endif
 	}
 
@@ -83,9 +92,11 @@ void TriangukarFluidFlowCalculator::calculate()
 	resultMatrix = left_divide(stiffnessMatrix, massMatrix);
 
 #ifdef DEBUG
-	std::stringstream ss;
-	ss << "final result = " << resultMatrix << std::endl;
-	qDebug() << ss.str().c_str();
+	{
+		std::stringstream ss;
+		ss << "final result = " << resultMatrix << std::endl;
+		qDebug() << ss.str().c_str();
+	}
 #endif
 
 	emit finished();
