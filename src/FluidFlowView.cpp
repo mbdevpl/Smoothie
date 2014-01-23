@@ -1,7 +1,8 @@
 #include "FluidFlowView.hpp"
 
-FluidFlowView::FluidFlowView(QWidget *parent) :
-	QGLWidget(parent), viewObject(nullptr), view(0), lastPos(QPoint(0,0)), lastFrame(nullptr)
+FluidFlowView::FluidFlowView(QWidget *parent)
+	: QGLWidget(parent), viewObject(nullptr), view(0), lastPos(QPoint(0,0)),
+		lastFrame(nullptr), interactiveMode(true)
 {
 }
 
@@ -53,6 +54,9 @@ void FluidFlowView::resizeGL(int width, int height)
 
 void FluidFlowView::mousePressEvent(QMouseEvent *event)
 {
+	if(!interactiveMode)
+		return;
+
 	lastPos = event->pos();
 	if(viewObject->GetEditMode())
 	{
@@ -158,6 +162,9 @@ void FluidFlowView::updateMesh()
 
 void FluidFlowView::mouseMoveEvent(QMouseEvent *event)
 {
+	if(!interactiveMode)
+		return;
+
 	if(viewObject->GetEditMode())
 		return;
 
@@ -176,6 +183,9 @@ void FluidFlowView::mouseMoveEvent(QMouseEvent *event)
 
 void FluidFlowView::keyPressEvent(QKeyEvent *event)
 {
+	if(!interactiveMode)
+		return;
+
 	int keyDisplayed = event->key();
 	Qt::Key keys = static_cast<Qt::Key>(keyDisplayed);
 
@@ -196,6 +206,9 @@ void FluidFlowView::keyPressEvent(QKeyEvent *event)
 
 void FluidFlowView::keyReleaseEvent(QKeyEvent *event)
 {
+	if(!interactiveMode)
+		return;
+
 	int keyDisplayed = event->key();
 	Qt::Key keys = static_cast<Qt::Key>(keyDisplayed);
 

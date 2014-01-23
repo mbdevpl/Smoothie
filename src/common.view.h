@@ -1,5 +1,8 @@
 #pragma once
 
+#define FramesPerSecond 25
+#define DrawingDelay ((int)(1000.0f / FramesPerSecond))
+
 /*!
  * \file common.view.h
  *
@@ -13,9 +16,25 @@
 #define FracPiOver180 0.01745329252
 #define Frac180OverPi 57.295779513
 
+#ifdef WINDOWS
+// This disables warnings after using std::copy, which was declared unsafe in MSVC compiler,
+// but std::copy is used in this project only by boost ublas matrix,
+// so I pretty much redard it as safe.
+#pragma warning(push)
+#pragma warning(disable:4996)
+#endif
+
+#include <algorithm>
+#include <xutility>
+
+#ifdef WINDOWS
+#pragma warning(pop)
+#endif
+
 #include <cmath>
 #include <string>
 #include <iomanip>
+#include <fstream>
 #include <ostream>
 #include <sstream>
 #include <vector>
@@ -48,6 +67,16 @@
 #include <win32config.h>
 #include <libxml/xmlwin32version.h>
 #endif
+
+#include <libxml/tree.h>
+#include <libxml/parser.h>
+#include <libxml/xmlversion.h>
+#include <libxml/xmlmemory.h>
+#include <libxml/encoding.h>
+#include <libxml/globals.h>
+
+#define TO_XML BAD_CAST
+#define FROM_XML (const char*)
 
 #ifndef Q_MOC_RUN
 

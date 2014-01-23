@@ -3,6 +3,9 @@
 Point2D::Point2D()
 	: x(0), y(0) { }
 
+Point2D::Point2D(const Point2D& point)
+	: x(point.x), y(point.y) { }
+
 Point2D::Point2D(float x, float y)
 	: x(x), y(y) { }
 

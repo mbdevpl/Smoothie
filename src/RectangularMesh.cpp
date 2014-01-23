@@ -1,18 +1,26 @@
 #include "RectangularMesh.hpp"
 
 RectangularMesh::RectangularMesh()
+	: Mesh()
 {
 	initialize();
 }
 
+RectangularMesh::RectangularMesh(const Mesh& mesh)
+	: Mesh(mesh)
+{
+	if(points.size() == 0 || elems.size() == 0)
+		initialize();
+}
+
 RectangularMesh::RectangularMesh(size_t width, size_t height, Point3D domainStart, Point3D domainEnd)
-	: Mesh(width, height, domainStart, domainEnd)
+	: Mesh(width, height, domainStart, domainEnd, "rectangular")
 {
 	initialize();
 }
 
 RectangularMesh::RectangularMesh(size_t width, size_t height, Point3D domainStart, Point3D domainEnd, bool borderIsBoundary)
-	: Mesh(width, height, domainStart, domainEnd)
+	: Mesh(width, height, domainStart, domainEnd, "rectangular")
 {
 	initialize();
 	if(borderIsBoundary)

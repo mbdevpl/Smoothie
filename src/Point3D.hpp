@@ -12,6 +12,7 @@ public:
 
 public:
 	Point3D();
+	Point3D(const Point3D& point);
 	Point3D(float x, float y, float z);
 	virtual void reset();
 

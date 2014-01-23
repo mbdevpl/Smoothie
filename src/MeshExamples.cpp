@@ -2,7 +2,7 @@
 
 bool MeshExamples::generated = false;
 
-std::vector<Mesh*> MeshExamples::meshes = std::vector<Mesh*>(10);
+std::vector<Mesh*> MeshExamples::meshes = std::vector<Mesh*>(6);
 
 Mesh& MeshExamples::get(size_t index)
 {
@@ -20,6 +20,7 @@ void MeshExamples::generate(size_t index)
 	case 0:
 		mesh = static_cast<Mesh*>(new RectangularMesh(3, 3,
 				Point3D(0, 0, 0), Point3D(1, 1, 2), true));
+		mesh->SetName("3 by 3 simple example");
 		mesh->pt(0).z = 1.5;
 		mesh->pt(1).z = 1.5;
 		mesh->pt(2).z = 1.5;
@@ -35,6 +36,7 @@ void MeshExamples::generate(size_t index)
 	case 1:
 		mesh = static_cast<Mesh*>(new RectangularMesh(10, 5,
 				Point3D(-10, -5, -2), Point3D(10, 5, 2), false));
+		mesh->SetName("10 by 5 smoothing example");
 		mesh->pt(0).boundary = true;
 		mesh->pt(0).z = -2.0;
 		mesh->pt(10).boundary = true;
@@ -63,6 +65,7 @@ void MeshExamples::generate(size_t index)
 	case 2:
 		mesh = static_cast<Mesh*>(new RectangularMesh(3, 3,
 				Point3D(-1, -1, 0), Point3D(1, 1, 2), true));
+		mesh->SetName("3 by 3");
 		mesh->pt(0).z = 1.5;
 		mesh->pt(1).z = 1.5;
 		mesh->pt(2).z = 1.5;
@@ -80,6 +83,7 @@ void MeshExamples::generate(size_t index)
 	case 3:
 		mesh = static_cast<Mesh*>(new TriangularMesh(3, 3,
 				Point3D(-1, -1, 0), Point3D(1, 1, 2), true));
+		mesh->SetName("3 by 3");
 		mesh->pt(0).z = 1.5;
 		mesh->pt(1).z = 1.5;
 		mesh->pt(2).boundary = false;
@@ -95,6 +99,7 @@ void MeshExamples::generate(size_t index)
 	case 4:
 		mesh = static_cast<Mesh*>(new TriangularMesh(2, 2,
 				Point3D(-1, -1, 0), Point3D(1, 1, 2), true));
+		mesh->SetName("2 by 2");
 		mesh->pt(0).z = 1.0;
 		mesh->pt(1).z = 2.0;
 		mesh->pt(2).boundary = false;
@@ -105,6 +110,7 @@ void MeshExamples::generate(size_t index)
 	case 5:
 		mesh = static_cast<Mesh*>(new TriangularMesh(7, 7,
 				Point3D(-12, -10, -3), Point3D(12, 10, 3), false));
+		mesh->SetName("7 by 7");
 
 		mesh->pt(0).boundary = true;
 		mesh->pt(0).z = -3.0;

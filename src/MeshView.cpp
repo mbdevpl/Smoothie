@@ -1,9 +1,15 @@
 #include "MeshView.hpp"
 
+#ifdef WINDOWS
 #define FONT_PATH "C:/Windows/Fonts/arial.ttf"
+#else
+#define FONT_PATH NOT_IMPLEMENTED___LINUX_FONT_PATH_NOT_DEFINED
+#endif
 
 MeshView::MeshView(Mesh* mesh)
-	: mesh(mesh), view(0), viewPlane(), editMode(false), flatMode(false), heightMode(false),
+	: mesh(mesh), view(0), viewPlane(),
+	editMode(false), flatMode(false), heightMode(false),
+	guidedMode(true), labeledMode(true), textureMode(false),
 	font(FONT_PATH),
 	r(15.0), s(10.0)
 {
@@ -15,7 +21,9 @@ MeshView::MeshView(Mesh* mesh)
 }
 
 MeshView::MeshView(Mesh* mesh, Plane viewPlane)
-	: mesh(mesh), view(0), viewPlane(viewPlane), editMode(false), flatMode(false), heightMode(false),
+	: mesh(mesh), view(0), viewPlane(viewPlane),
+	editMode(false), flatMode(false), heightMode(false),
+	guidedMode(true), labeledMode(true), textureMode(false),
 	font(FONT_PATH),
 	r(15.0), s(10.0)
 {
@@ -92,6 +100,10 @@ void MeshView::initialize()
 			)->str();
 	delabel = const_cast<char*>(domainEndLabel.c_str());
 
+	conn = new bool*[ptsCount];
+	for(size_t i = 0; i < ptsCount; ++i)
+		conn[i] = new bool[ptsCount];
+
 	recalculate();
 }
 
@@ -105,6 +117,10 @@ void MeshView::release()
 	delete[] ecxa;
 	delete[] ecya;
 	delete[] ecza;
+
+	for(size_t i = 0; i < ptsCount; ++i)
+		delete[] conn[i];
+	delete[] conn;
 }
 
 void MeshView::reinitialize()
@@ -136,6 +152,49 @@ void MeshView::recalculate()
 		//	ecza[i] = 0.0;
 		//else
 		ecza[i] = depthOffset + pt.z * depthMultiplier;
+	}
+
+	for(size_t it1 = 0; it1 < ptsCount; ++it1)
+		for(size_t it2 = 0; it2 < ptsCount; ++it2)
+			conn[it1][it2] = false;
+	//for(size_t it1 = ptsCount - 2; ; --it1)
+	//{
+	//	for(size_t it2 = it1 + 1; it2 < ptsCount; ++it2)
+	//		conn[it1][it2] = false;
+	//	if(it1 == 0)
+	//		break;
+	//}
+
+	for(size_t it1 = ptsCount - 2; ; --it1)
+	{
+		for(size_t it2 = it1 + 1; it2 < ptsCount; ++it2)
+		{
+			bool connected = false;
+			for(size_t i = 0; i < elemsCount; ++i)
+			{
+				const MeshElement& elem = mesh->GetElement(i);
+				size_t elemSize = elem.points.size();
+
+				if( (elem.points.at(0)->index == it1 && elem.points.at(elemSize - 1)->index == it2)
+					 || (elem.points.at(0)->index == it2 && elem.points.at(elemSize - 1)->index == it1) )
+					connected = true;
+				else
+					for(size_t j = 1; j < elemSize; ++j)
+						if(  (elem.points.at(j-1)->index == it1 && elem.points.at(j)->index == it2)
+							|| (elem.points.at(j-1)->index == it2 && elem.points.at(j)->index == it1) )
+						{
+							connected = true;
+							break;
+						}
+
+				if(connected)
+					break;
+			}
+			if(connected)
+				conn[it1][it2] = true;
+		}
+		if(it1 == 0)
+			break;
 	}
 }
 
@@ -239,24 +298,27 @@ void MeshView::Draw()
 			glRotatef(plane.zAngle, 0.0f, 0.0f, 1.0f);
 	}
 
-	// color
-	glDisable(GL_LIGHTING);
-	glDisable(GL_LIGHT0);
-	setColourOrbit();
-
-	// orbit
-	glBegin(GL_POINTS);
-	GLfloat x = 0.0, y = 0.0; //, z = 0.0;
-	for(GLdouble i = 0.0; i < PiTimes2; i += ArcJump)
+	if(guidedMode)
 	{
-		x = r * sin(i);
-		y = r * cos(i);
-		//z = 0.0;
-		glVertex3f(x, y, 0.0f);
-	}
-	glEnd();
+		// color
+		glDisable(GL_LIGHTING);
+		glDisable(GL_LIGHT0);
+		setColourOrbit();
 
-	size_t ptsCount = mesh->GetPointsCount();
+		// orbit
+		glBegin(GL_POINTS);
+		GLfloat x = 0.0, y = 0.0; //, z = 0.0;
+		for(GLdouble i = 0.0; i < PiTimes2; i += ArcJump)
+		{
+			x = r * sin(i);
+			y = r * cos(i);
+			//z = 0.0;
+			glVertex3f(x, y, 0.0f);
+		}
+		glEnd();
+	}
+
+	//size_t ptsCount = mesh->GetPointsCount();
 
 	// color
 	glDisable(GL_LIGHTING);
@@ -300,96 +362,176 @@ void MeshView::Draw()
 		}
 	}
 
-	// mesh, elements' labels and domain delimiters
-
-	// TODO: determine font size on viewport resize
-	//GLint m_viewport[4];
-	//glGetIntegerv(GL_VIEWPORT, m_viewport);
-	//size_t screenHeight = (size_t)m_viewport[3];
-	const unsigned int size = 16;
-	const unsigned int res = 72;// + (screenHeight - 745) / 10;
-	font.FaceSize(size, res);
-
-	setColourLabel();
-	for(size_t i = elemsCount - 1; ; --i)
+	if(labeledMode)
 	{
-		std::string label = std::to_string(i + 1);
+		// mesh, elements' labels and domain delimiters
 
-		if(flatMode)
-			glRasterPos3f(ecxa[i], ecya[i], 0.0f);
+		// TODO: determine font size on viewport resize
+		//GLint m_viewport[4];
+		//glGetIntegerv(GL_VIEWPORT, m_viewport);
+		//size_t screenHeight = (size_t)m_viewport[3];
+		const unsigned int size = 16;
+		const unsigned int res = 72;// + (screenHeight - 745) / 10;
+		font.FaceSize(size, res);
+
+		setColourLabel();
+		for(size_t i = elemsCount - 1; ; --i)
+		{
+			std::string label = std::to_string(i + 1);
+
+			if(flatMode)
+				glRasterPos3f(ecxa[i], ecya[i], 0.0f);
+			else
+				glRasterPos3f(ecxa[i], ecya[i], ecza[i]);
+			font.Render(label.c_str());
+
+			if(i == 0)
+				break;
+		}
+
+		if(editMode)
+			glRasterPos3f(dsx, dsy - 1.5f, 0.0f);
 		else
-			glRasterPos3f(ecxa[i], ecya[i], ecza[i]);
-		font.Render(label.c_str());
+			glRasterPos3f(dsx, dsy, -0.5f);
+		font.Render(dslabel);
 
-		if(i == 0)
-			break;
+		if(editMode)
+			glRasterPos3f(dex, dey + 0.5f, 0.0f);
+		else
+			glRasterPos3f(dex, dey, 0.0f);
+		font.Render(delabel);
 	}
-
-	if(editMode)
-		glRasterPos3f(dsx, dsy - 1.5f, 0.0f);
-	else
-		glRasterPos3f(dsx, dsy, -0.5f);
-	font.Render(dslabel);
-
-	if(editMode)
-		glRasterPos3f(dex, dey + 0.5f, 0.0f);
-	else
-		glRasterPos3f(dex, dey, 0.0f);
-	font.Render(delabel);
 
 	// mesh, lines
-	glLineWidth(1.0);
-	glBegin(GL_LINES);
-	for(size_t it1 = ptsCount - 2; ; --it1)
+	if(textureMode)
 	{
-		for(size_t it2 = it1 + 1; it2 < ptsCount; ++it2)
-		{
-			bool connected = false;
-			for(size_t i = 0; i < elemsCount; ++i)
+		glBegin(GL_TRIANGLES);
+		if(!mesh->GetType().compare("triangular"))
+			for(size_t it = elemsCount - 1; ; --it)
 			{
-				const MeshElement& elem = mesh->GetElement(i);
-				size_t elemSize = elem.points.size();
-
-				if( (elem.points.at(0)->index == it1 && elem.points.at(elemSize - 1)->index == it2)
-					 || (elem.points.at(0)->index == it2 && elem.points.at(elemSize - 1)->index == it1) )
-					connected = true;
-				else
-					for(size_t j = 1; j < elemSize; ++j)
-						if(  (elem.points.at(j-1)->index == it1 && elem.points.at(j)->index == it2)
-							|| (elem.points.at(j-1)->index == it2 && elem.points.at(j)->index == it1) )
-						{
-							connected = true;
-							break;
-						}
-
-				if(connected)
+				const MeshElement& elem = mesh->GetElement(it);
+				for(auto pit = elem.points.begin(); pit != elem.points.end(); ++pit)
+				{
+					size_t i = (**pit).index;
+					if(heightMode)
+						setColour(za[i]);
+					else
+						setColour(ba[i]);
+					if(flatMode)
+						glVertex3f(xa[i], ya[i], 0.0f);
+					else
+						glVertex3f(xa[i], ya[i], za[i]);
+				}
+				if(it == 0)
 					break;
 			}
-			if(!connected)
-				continue;
-
-			if(heightMode)
-				setColour(za[it1]);
-			else
-				setColour(ba[it1]);
-			if(flatMode)
-				glVertex3f(xa[it1], ya[it1], 0.0f);
-			else
-				glVertex3f(xa[it1], ya[it1], za[it1]);
-
-			if(heightMode)
-				setColour(za[it2]);
-			else
-				setColour(ba[it2]);
-			if(flatMode)
-				glVertex3f(xa[it2], ya[it2], 0.0f);
-			else
-			glVertex3f(xa[it2], ya[it2], za[it2]);
-		}
-		if(it1 == 0)
-			break;
+		else if(!mesh->GetType().compare("rectangular"))
+			for(size_t it = elemsCount - 1; ; --it)
+			{
+				const MeshElement& elem = mesh->GetElement(it);
+				// first triangle
+				for(auto pit = elem.points.begin(); pit != elem.points.end()-1; ++pit)
+				{
+					size_t i = (**pit).index;
+					if(heightMode)
+						setColour(za[i]);
+					else
+						setColour(ba[i]);
+					if(flatMode)
+						glVertex3f(xa[i], ya[i], 0.0f);
+					else
+						glVertex3f(xa[i], ya[i], za[i]);
+				}
+				// second triangle
+				for(auto pit = elem.points.begin()+2; pit != elem.points.end(); ++pit)
+				{
+					size_t i = (**pit).index;
+					if(heightMode)
+						setColour(za[i]);
+					else
+						setColour(ba[i]);
+					if(flatMode)
+						glVertex3f(xa[i], ya[i], 0.0f);
+					else
+						glVertex3f(xa[i], ya[i], za[i]);
+				}
+				{
+					auto pit = elem.points.begin();
+					size_t i = (**pit).index;
+					if(heightMode)
+						setColour(za[i]);
+					else
+						setColour(ba[i]);
+					if(flatMode)
+						glVertex3f(xa[i], ya[i], 0.0f);
+					else
+						glVertex3f(xa[i], ya[i], za[i]);
+				}
+				if(it == 0)
+					break;
+			}
+		else
+			throw new std::runtime_error("texturing implemented only for triangular and rectangular meshes");
+		glEnd();
 	}
-	glEnd();
+	else
+	{
+		glLineWidth(1.0);
+		glBegin(GL_LINES);
+		for(size_t it1 = ptsCount - 2; ; --it1)
+		{
+			for(size_t it2 = it1 + 1; it2 < ptsCount; ++it2)
+			{
+				if(!conn[it1][it2])
+					continue;
+
+				//bool connected = false;
+				//for(size_t i = 0; i < elemsCount; ++i)
+				//{
+				//	const MeshElement& elem = mesh->GetElement(i);
+				//	size_t elemSize = elem.points.size();
+
+				//	if( (elem.points.at(0)->index == it1 && elem.points.at(elemSize - 1)->index == it2)
+				//		 || (elem.points.at(0)->index == it2 && elem.points.at(elemSize - 1)->index == it1) )
+				//		connected = true;
+				//	else
+				//		for(size_t j = 1; j < elemSize; ++j)
+				//			if(  (elem.points.at(j-1)->index == it1 && elem.points.at(j)->index == it2)
+				//				|| (elem.points.at(j-1)->index == it2 && elem.points.at(j)->index == it1) )
+				//			{
+				//				connected = true;
+				//				break;
+				//			}
+
+				//	if(connected)
+				//		break;
+				//}
+				//if(!connected)
+				//	continue;
+
+				if(heightMode)
+					setColour(za[it1]);
+				else
+					setColour(ba[it1]);
+				if(flatMode)
+					glVertex3f(xa[it1], ya[it1], 0.0f);
+				else
+					glVertex3f(xa[it1], ya[it1], za[it1]);
+
+				if(heightMode)
+					setColour(za[it2]);
+				else
+					setColour(ba[it2]);
+				if(flatMode)
+					glVertex3f(xa[it2], ya[it2], 0.0f);
+				else
+				glVertex3f(xa[it2], ya[it2], za[it2]);
+			}
+			if(it1 == 0)
+				break;
+		}
+		glEnd();
+	}
 
 	if(!editMode)
 	{

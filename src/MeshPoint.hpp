@@ -20,6 +20,7 @@ public:
 
 public:
 	MeshPoint();
+	MeshPoint(const MeshPoint& point);
 	MeshPoint(float x, float y, float z, size_t index, bool boundary);
 
 };

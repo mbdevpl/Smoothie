@@ -9,6 +9,7 @@ class RectangularMesh : public Mesh
 {
 public:
 	RectangularMesh();
+	RectangularMesh(const Mesh& mesh);
 	RectangularMesh(size_t width, size_t height, Point3D domainStart, Point3D domainEnd);
 	RectangularMesh(size_t width, size_t height, Point3D domainStart, Point3D domainEnd, bool borderIsBoundary);
 

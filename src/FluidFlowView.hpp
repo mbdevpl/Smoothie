@@ -19,6 +19,11 @@ private:
 	QPoint lastPos;
 	PointFrame* lastFrame;
 
+	/*!
+	 * \brief If false, the widget does not react to mouse and/or keyboard.
+	 */
+	bool interactiveMode;
+
 public:
 
 	explicit FluidFlowView(QWidget *parent = 0);
@@ -40,6 +45,7 @@ public:
 
 	void SetView(MeshView* view);
 	inline const MeshView* GetView() const { return viewObject; }
+	inline void SetInteractiveMode(bool interactiveMode) { this->interactiveMode = interactiveMode; }
 	void RefreshView();
 
 signals:

@@ -1,18 +1,26 @@
 #include "TriangularMesh.hpp"
 
 TriangularMesh::TriangularMesh()
+	: Mesh()
 {
 	initialize();
 }
 
+TriangularMesh::TriangularMesh(const Mesh& mesh)
+	: Mesh(mesh)
+{
+	if(points.size() == 0 || elems.size() == 0)
+		initialize();
+}
+
 TriangularMesh::TriangularMesh(size_t width, size_t height, Point3D domainStart, Point3D domainEnd)
-	: Mesh(width, height, domainStart, domainEnd)
+	: Mesh(width, height, domainStart, domainEnd, "triangular")
 {
 	initialize();
 }
 
 TriangularMesh::TriangularMesh(size_t width, size_t height, Point3D domainStart, Point3D domainEnd, bool borderIsBoundary)
-	: Mesh(width, height, domainStart, domainEnd)
+	: Mesh(width, height, domainStart, domainEnd, "triangular")
 {
 	initialize();
 	if(borderIsBoundary)

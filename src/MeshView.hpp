@@ -13,17 +13,51 @@ private:
 	 * \brief The mesh that is viewed.
 	 */
 	Mesh* mesh;
+
 	/*!
 	 * \brief OpenGL list that stores the current data to be rendered.
 	 */
 	GLuint view;
+
 	/*!
 	 * \brief Collection of angles at which the mesh is seen.
 	 */
 	Plane viewPlane;
+
+	/*!
+	 * \brief If true, the mesh is editable.
+	 *  If false, it is not.
+	 */
 	bool editMode;
+
+	/*!
+	 * \brief If true, the z coordinates of vertices are ignored during rendering.
+	 *  If false, they are not ignored.
+	 */
 	bool flatMode;
+
+	/*!
+	 * \brief If true, the z coordinate of every vertex gives its colour;
+	 *  if false, the boundary status of vertex gives its colour.
+	 */
 	bool heightMode;
+
+	/*!
+	 * \brief If true, the guiding circle is drawn around the mesh.
+	 *  If false, it is not.
+	 */
+	bool guidedMode;
+
+	/*!
+	 * \brief If true, text labels on and around the mesh are displayed.
+	 */
+	bool labeledMode;
+
+	/*!
+	 * \brief If true, surfaces of elements are filled; if false, only the mesh is displayed.
+	 */
+	bool textureMode;
+
 	/*!
 	 * \brief Font used to render labels.
 	 */
@@ -66,6 +100,12 @@ private:
 	float heightOffset;
 	float depthOffset;
 
+	/*!
+	 * \brief Precalculated adjecency matrix for all points in the mesh. If given value conn[i][j]
+	 *  is true, then the edge should be drawn from point at index i to point at index j.
+	 */
+	bool** conn;
+
 public:
 	MeshView(Mesh* mesh);
 	MeshView(Mesh* mesh, Plane viewPlane);
@@ -90,7 +130,10 @@ public:
 	inline GLuint GetView() const { return view; }
 	inline void SetEditMode(bool mode) { editMode = mode; flatMode = mode; recalculate(); }
 	inline void SetFlatMode(bool mode) { flatMode = mode; recalculate(); }
-	inline void SetHeightMode(bool mode) { heightMode = mode; recalculate(); }
+	inline void SetHeightMode(bool mode) { heightMode = mode; }
+	inline void SetGuidedMode(bool mode) { guidedMode = mode; }
+	inline void SetLabeledMode(bool mode) { labeledMode = mode; }
+	inline void SetTextureMode(bool mode) { textureMode = mode; }
 	inline bool GetEditMode() { return editMode; }
 	inline bool GetFlatMode() { return flatMode; }
 	inline bool GetHeightMode() { return heightMode; }

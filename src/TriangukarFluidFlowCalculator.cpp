@@ -70,12 +70,14 @@ void TriangukarFluidFlowCalculator::calculate()
 		if(mesh.GetPoint(i).boundary)
 			++boundaryElementsCount;
 
+	bool conditions_present = false;
 	for(size_t i = 0; i < pointsCount; ++i)
 	{
 		const MeshPoint& pt = mesh.GetPoint(i);
 
 		if(pt.boundary)
 		{
+			conditions_present = true;
 			// overwrite stiffness matrix
 			matrix<double> identity(pointsCount, 1);
 			identity.assign(zero_matrix<double>(pointsCount, 1));
@@ -88,8 +90,11 @@ void TriangukarFluidFlowCalculator::calculate()
 		}
 	}
 
-	// multiply inverse of stiffness matrix by mass matrix
-	resultMatrix = left_divide(stiffnessMatrix, massMatrix);
+	if(conditions_present)
+	{
+		// multiply inverse of stiffness matrix by mass matrix
+		resultMatrix = left_divide(stiffnessMatrix, massMatrix);
+	}
 
 #ifdef DEBUG
 	{
@@ -137,6 +142,9 @@ double TriangukarFluidFlowCalculator::localPartialDerivative(size_t pointIndex, 
 {
 	MeshElement& element = mesh.el(currentElementIndex);
 	std::vector<MeshPoint*>& pts = element.points;
+
+	x = 0.0;
+	y = 0.0;
 
 	const double determinant =
 		(pts.at(1)->x - pts.at(2)->x) * (pts.at(0)->y - pts.at(2)->y)

@@ -14,6 +14,7 @@ private:
 
 public:
 	static Mesh& get(size_t index);
+	inline static size_t getCount() { return meshes.size(); }
 
 private:
 	static void generate(size_t index);

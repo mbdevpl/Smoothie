@@ -9,6 +9,7 @@ class TriangularMesh : public Mesh
 {
 public:
 	TriangularMesh();
+	TriangularMesh(const Mesh& mesh);
 	TriangularMesh(size_t width, size_t height, Point3D domainStart, Point3D domainEnd);
 	TriangularMesh(size_t width, size_t height, Point3D domainStart, Point3D domainEnd, bool borderIsBoundary);
 

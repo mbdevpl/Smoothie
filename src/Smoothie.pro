@@ -49,6 +49,7 @@ SOURCES += \
 	MainWindow.cpp \
 	PointFrame.cpp \
 	NewMeshDialog.cpp \
+	LoadExampleDialog.cpp \
 	MatricesDialog.cpp \
 	Point2D.cpp \
 	Point3D.cpp \
@@ -64,13 +65,14 @@ SOURCES += \
 	TriangukarFluidFlowCalculator.cpp \
 	RectangularFluidFlowCalculator.cpp \
 	MeshExamples.cpp \
-	CalculatorThread.cpp
+	CalculatorThread.cpp \
 
 HEADERS += \
 	common.view.h \
 	MainWindow.hpp \
 	PointFrame.hpp \
 	NewMeshDialog.hpp \
+	LoadExampleDialog.hpp \
 	MatricesDialog.hpp \
 	Point2D.hpp \
 	Point3D.hpp \
@@ -80,18 +82,20 @@ HEADERS += \
 	FluidFlowView.hpp \
 	RectangularMesh.hpp \
 	TriangularMesh.hpp \
+	IrregularMesh.hpp \
 	MeshPoint.hpp \
 	MeshElement.hpp \
 	FluidFlowCalculator.hpp \
 	TriangukarFluidFlowCalculator.hpp \
 	RectangularFluidFlowCalculator.hpp \
 	MeshExamples.hpp \
-	CalculatorThread.hpp
+	CalculatorThread.hpp \
 
 FORMS += MainWindow.ui \
 	PointFrame.ui \
 	NewMeshDialog.ui \
-	MatricesDialog.ui
+	LoadExampleDialog.ui \
+	MatricesDialog.ui \
 
 OTHER_FILES += \
 	../.gitignore \

@@ -3,9 +3,11 @@
 #include "TriangukarFluidFlowCalculator.hpp"
 #include "RectangularFluidFlowCalculator.hpp"
 #include "MeshExamples.hpp"
+#include "IrregularMesh.hpp"
 
 #include "FluidFlowView.hpp"
 #include "NewMeshDialog.hpp"
+#include "LoadExampleDialog.hpp"
 #include "MatricesDialog.hpp"
 #include "CalculatorThread.hpp"
 
@@ -49,6 +51,10 @@ private slots:
 	 * \brief Trigerred when 'Load' menu option is clicked.
 	 */
 	void on_actionLoad_triggered();
+	/*!
+	 * \brief Trigerred when 'Load example' menu option is clicked.
+	 */
+	void on_actionLoadExample_triggered();
 	/*!
 	 * \brief Trigerred when 'Save' menu option is clicked.
 	 */

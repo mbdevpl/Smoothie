@@ -69,12 +69,14 @@ void RectangularFluidFlowCalculator::calculate()
 		if(mesh.GetPoint(i).boundary)
 			++boundaryElementsCount;
 
+	bool conditions_present = false;
 	for(size_t i = 0; i < pointsCount; ++i)
 	{
 		const MeshPoint& pt = mesh.GetPoint(i);
 
 		if(pt.boundary)
 		{
+			conditions_present = true;
 			// overwrite stiffness matrix
 			matrix<double> identity(pointsCount, 1);
 			identity.assign(zero_matrix<double>(pointsCount, 1));
@@ -87,8 +89,11 @@ void RectangularFluidFlowCalculator::calculate()
 		}
 	}
 
-	// multiply inverse of stiffness matrix by mass matrix
-	resultMatrix = left_divide(stiffnessMatrix, massMatrix);
+	if(conditions_present)
+	{
+		// multiply inverse of stiffness matrix by mass matrix
+		resultMatrix = left_divide(stiffnessMatrix, massMatrix);
+	}
 
 #ifdef DEBUG
 	{

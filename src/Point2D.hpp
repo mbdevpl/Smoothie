@@ -11,6 +11,7 @@ public:
 
 public:
 	Point2D();
+	Point2D(const Point2D& point);
 	Point2D(float x, float y);
 	virtual void reset();
 
