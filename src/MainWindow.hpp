@@ -66,6 +66,8 @@ private slots:
 	void on_actionColourValue_triggered();
 	void on_actionShowMesh_triggered();
 	void on_actionShowTextures_triggered();
+	void on_actionShowLabels_triggered();
+	void on_actionHideLabels_triggered();
 
 	void on_actionMatrices_triggered();
 

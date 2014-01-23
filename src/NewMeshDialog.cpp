@@ -79,8 +79,11 @@ void NewMeshDialog::rebuildView()
 	MeshView* previous = view;
 
 	// create new view object
-	MeshView* view = new MeshView(mesh, Plane(0.0, -50.0, 0.0, AngleUnit::Degree));
-	view->SetEditMode(true);
+	MeshView* view = new MeshView(mesh, Plane(0.0, -10.0, 0.0, AngleUnit::Degree));
+	view->SetEditMode(false);
+	view->SetLabeledMode(false);
+	view->SetGuidedMode(false);
+	ui->viewWidget->SetInteractiveMode(false);
 	ui->viewWidget->SetView(view);
 	view->UpdateData();
 
