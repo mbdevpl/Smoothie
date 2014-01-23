@@ -154,6 +154,13 @@ void MeshView::recalculate()
 		ecza[i] = depthOffset + pt.z * depthMultiplier;
 	}
 
+	color_tresholds.clear();
+	color_tresholds[0] = dsz;
+	color_tresholds[1] = dsz + 0.25 * dDepth;
+	color_tresholds[2] = dsz + 0.5 * dDepth;
+	color_tresholds[3] = dsz + 0.75 * dDepth;
+	color_tresholds[4] = dez;
+
 	for(size_t it1 = 0; it1 < ptsCount; ++it1)
 		for(size_t it2 = 0; it2 < ptsCount; ++it2)
 			conn[it1][it2] = false;
@@ -175,17 +182,26 @@ void MeshView::recalculate()
 				const MeshElement& elem = mesh->GetElement(i);
 				size_t elemSize = elem.points.size();
 
-				if( (elem.points.at(0)->index == it1 && elem.points.at(elemSize - 1)->index == it2)
-					 || (elem.points.at(0)->index == it2 && elem.points.at(elemSize - 1)->index == it1) )
+				size_t elem_pt_first_index = elem.points.at(0)->index;
+				size_t elem_pt_last_index = elem.points.at(elemSize - 1)->index;
+				if(  (elem_pt_first_index == it1 && elem_pt_last_index == it2)
+					|| (elem_pt_first_index == it2 && elem_pt_last_index == it1) )
 					connected = true;
 				else
+				{
+					size_t elem_pt_prev_index = elem_pt_first_index;
 					for(size_t j = 1; j < elemSize; ++j)
-						if(  (elem.points.at(j-1)->index == it1 && elem.points.at(j)->index == it2)
-							|| (elem.points.at(j-1)->index == it2 && elem.points.at(j)->index == it1) )
+					{
+						size_t elem_pt_curr_index = elem.points.at(j)->index;
+						if(  (elem_pt_prev_index == it1 && elem_pt_curr_index == it2)
+							|| (elem_pt_prev_index == it2 && elem_pt_curr_index == it1) )
 						{
 							connected = true;
 							break;
 						}
+						elem_pt_prev_index = elem_pt_curr_index;
+					}
+				}
 
 				if(connected)
 					break;
@@ -248,25 +264,18 @@ void MeshView::setColour(bool boundary)
 
 void MeshView::setColour(double value)
 {
-	std::vector<double> tresholds(5);
-	tresholds[0] = dsz;
-	tresholds[1] = dsz + 0.25 * dDepth;
-	tresholds[2] = dsz + 0.5 * dDepth;
-	tresholds[3] = dsz + 0.75 * dDepth;
-	tresholds[4] = dez;
-
 	double height = (value - dsz) / dDepth;
 
-	if(value < tresholds[0])
+	if(value < color_tresholds[0])
 		glColor3f(0.0f, 0.0f, 0.5f);
-	else if(value <= tresholds[1]) // from 0.00 to 0.25
+	else if(value <= color_tresholds[1]) // from 0.00 to 0.25
 		glColor3f(0.1f, 0.0f + (height * 4), 1.0f);
-	else if(value <= tresholds[2]) // from 0.25 to 0.50
-		glColor3f(0.0f, 1.0f, 1.0f - (height * 4) - 0.25);
-	else if(value <= tresholds[3]) // from 0.50 to 0.75
-		glColor3f(0.0f + (height * 4) - 0.5, 1.0f, 0.0f);
-	else if(value <= tresholds[4]) // from 0.75 to 1.00
-		glColor3f(1.0f, 1.0f - (height * 4) - 0.75, 0.0f);
+	else if(value <= color_tresholds[2]) // from 0.25 to 0.50
+		glColor3f(0.0f, 1.0f, 1.0f - ((height - 0.25) * 4));
+	else if(value <= color_tresholds[3]) // from 0.50 to 0.75
+		glColor3f(0.0f + ((height - 0.5) * 4), 1.0f, 0.0f);
+	else if(value <= color_tresholds[4]) // from 0.75 to 1.00
+		glColor3f(1.0f, 1.0f - ((height - 0.75) * 4), 0.0f);
 	else
 		glColor3f(1.0f, 0.0f, 0.0f);
 }

@@ -101,6 +101,11 @@ private:
 	float depthOffset;
 
 	/*!
+	 * \brief Keeps the tresholds at which the height-based color changes.
+	 */
+	std::map<size_t,double> color_tresholds;
+
+	/*!
 	 * \brief Precalculated adjecency matrix for all points in the mesh. If given value conn[i][j]
 	 *  is true, then the edge should be drawn from point at index i to point at index j.
 	 */
