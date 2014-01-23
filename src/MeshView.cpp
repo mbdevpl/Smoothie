@@ -172,46 +172,65 @@ void MeshView::recalculate()
 	//		break;
 	//}
 
-	for(size_t it1 = ptsCount - 2; ; --it1)
+	for(size_t i = 0; i < elemsCount; ++i)
 	{
-		for(size_t it2 = it1 + 1; it2 < ptsCount; ++it2)
+		const MeshElement& elem = mesh->GetElement(i);
+		size_t elemSize = elem.points.size();
+
+		size_t elem_pt_first_index = elem.points.at(0)->index;
+		size_t elem_pt_prev_index = elem_pt_first_index;
+		for(size_t j = 1; j < elemSize; ++j)
 		{
-			bool connected = false;
-			for(size_t i = 0; i < elemsCount; ++i)
-			{
-				const MeshElement& elem = mesh->GetElement(i);
-				size_t elemSize = elem.points.size();
-
-				size_t elem_pt_first_index = elem.points.at(0)->index;
-				size_t elem_pt_last_index = elem.points.at(elemSize - 1)->index;
-				if(  (elem_pt_first_index == it1 && elem_pt_last_index == it2)
-					|| (elem_pt_first_index == it2 && elem_pt_last_index == it1) )
-					connected = true;
-				else
-				{
-					size_t elem_pt_prev_index = elem_pt_first_index;
-					for(size_t j = 1; j < elemSize; ++j)
-					{
-						size_t elem_pt_curr_index = elem.points.at(j)->index;
-						if(  (elem_pt_prev_index == it1 && elem_pt_curr_index == it2)
-							|| (elem_pt_prev_index == it2 && elem_pt_curr_index == it1) )
-						{
-							connected = true;
-							break;
-						}
-						elem_pt_prev_index = elem_pt_curr_index;
-					}
-				}
-
-				if(connected)
-					break;
-			}
-			if(connected)
-				conn[it1][it2] = true;
+			size_t elem_pt_curr_index = elem.points.at(j)->index;
+			conn[elem_pt_prev_index][elem_pt_curr_index] = true;
+			conn[elem_pt_curr_index][elem_pt_prev_index] = true;
+			elem_pt_prev_index = elem_pt_curr_index;
 		}
-		if(it1 == 0)
-			break;
+		size_t elem_pt_last_index = elem_pt_prev_index;
+		conn[elem_pt_last_index][elem_pt_first_index] = true;
+		conn[elem_pt_first_index][elem_pt_last_index] = true;
 	}
+
+	//for(size_t it1 = ptsCount - 2; ; --it1)
+	//{
+	//	for(size_t it2 = it1 + 1; it2 < ptsCount; ++it2)
+	//	{
+	//		bool connected = false;
+	//		for(size_t i = 0; i < elemsCount; ++i)
+	//		{
+	//			const MeshElement& elem = mesh->GetElement(i);
+	//			size_t elemSize = elem.points.size();
+
+	//			size_t elem_pt_first_index = elem.points.at(0)->index;
+	//			size_t elem_pt_last_index = elem.points.at(elemSize - 1)->index;
+	//			if(  (elem_pt_first_index == it1 && elem_pt_last_index == it2)
+	//				|| (elem_pt_first_index == it2 && elem_pt_last_index == it1) )
+	//				connected = true;
+	//			else
+	//			{
+	//				size_t elem_pt_prev_index = elem_pt_first_index;
+	//				for(size_t j = 1; j < elemSize; ++j)
+	//				{
+	//					size_t elem_pt_curr_index = elem.points.at(j)->index;
+	//					if(  (elem_pt_prev_index == it1 && elem_pt_curr_index == it2)
+	//						|| (elem_pt_prev_index == it2 && elem_pt_curr_index == it1) )
+	//					{
+	//						connected = true;
+	//						break;
+	//					}
+	//					elem_pt_prev_index = elem_pt_curr_index;
+	//				}
+	//			}
+
+	//			if(connected)
+	//				break;
+	//		}
+	//		if(connected)
+	//			conn[it1][it2] = true;
+	//	}
+	//	if(it1 == 0)
+	//		break;
+	//}
 }
 
 void MeshView::SetMesh(Mesh* mesh)
