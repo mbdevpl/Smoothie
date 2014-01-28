@@ -417,6 +417,15 @@ void MeshView::Draw()
 				break;
 		}
 
+		//for(auto it = axis_labels.begin(); it != axis_labels.end(); +it)
+		//{
+		//	if(editMode)
+		//		glRasterPos3f(it->x, it->y + (it->y > 0 ? -0.5f : 1.5f ), 0.0f);
+		//	else
+		//		glRasterPos3f(it->x, it->y, -0.5f);
+		//	font.Render(it->text);
+		//}
+
 		if(editMode)
 			glRasterPos3f(dsx, dsy - 1.5f, 0.0f);
 		else

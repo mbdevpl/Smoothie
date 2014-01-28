@@ -1,0 +1,204 @@
+\documentclass[a4paper,12pt]{article}
+
+% very small margins (around 1.5cm)
+% disable package geometry if you use this
+\usepackage{fullpage}
+
+% some mathematical symbols
+\usepackage{amsmath}
+
+% mathematical symbols
+% conflicts with package program
+\usepackage{amssymb}
+
+% metadata for PDF file, also hyperlinks via \href{link}{description}
+\usepackage{hyperref}
+% clickable table of contents, package above also needed
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
+% use \includegraphics[scale=1.00]{file.jpg} for images
+\usepackage{graphicx}
+
+% for proper placement of floating figures
+\usepackage{float}
+
+\usepackage{multirow}
+%\usepackage{pseudocode}
+%\usepackage{booktabs}
+%\usepackage{color}
+%\usepackage{algorithmic} %pseudocode
+%\usepackage{algorithm} %pseudocode as whole procedures
+%\usepackage{program} %more sophisticated pseudocode
+
+% use \begin{comment} ... \end{comment} for multiline comments
+\usepackage{comment}
+
+% use \begin{minted}[mathescape,linenos,numbersep=5pt,gobble=0,framesep=2mm]{c++}
+\usepackage{minted} 
+
+\begin{document}
+
+\title{Smoothie -- user's guide}
+\date{January 28, 2014}
+\author{Mateusz Bysiek, Computer Science A/S, MiNI, WUT}
+\maketitle
+
+\section{Main menu}
+
+Below, descriptions of what menu options do (only when the names are not self-explanatory):
+
+\begin{itemize}
+
+  \item Application
+
+  \begin{itemize}
+
+    \item About
+
+    \item Exit 
+
+  \end{itemize}
+
+  \item Mesh
+
+  \begin{itemize}
+
+    \item New -- open a creator for creating new meshes
+
+    \item Load -- load a mesh from XML file
+
+    \item Load example -- load a predefined mesh from a list of available examples 
+
+    \item Save -- save current mesh to a XML file
+
+  \end{itemize}
+
+  \item Mode -- change how the vizualization area behaves
+
+  \begin{itemize}
+
+    \item Mesh overview mode -- default mode
+
+    \item Mesh editing mode -- allows modifications of existing points
+
+    \item Colour points by boundary/free status -- points that have boundary condition enabled show in white, other
+    points show in grey
+
+    \item Colour points by value -- the points closest to minimum value are blue, then cyan, green, yellow and orange,
+    and the points closest to maximum value are red
+
+    \item Show only mesh
+
+    \item Fill elements with texture
+
+    \item Show all labels
+
+    \item Hide all labels
+
+  \end{itemize}
+
+  \item FEM
+
+  \begin{itemize}
+
+    \item Start -- starts the computation for current mesh, blocks the UI until computation is completed
+
+    \item Matrices -- opens a message box with data taken from matrices used in calculation  
+
+  \end{itemize}
+
+\end{itemize}
+
+\newpage
+
+\section{File format}
+
+Smoothie is able to save and load text files in a custom-defined XML. The naming and structure of tags is made in hope
+to be straightforward. Even if I hope that it is pretty intuitive, still below is the specific definition:
+
+\begin{itemize}
+
+  \item \emph{mesh} is a root tag. It defines domain of the mesh (starting and ending coordinates of each of 3
+  dimensions). It contains definition of the type of the mesh (triangular or rectangular), as well as width and height
+  which serve only as guides of how many points and elements the program can expect from the file. It also has
+  \emph{name} that serves just as a descriptive name for the mesh.
+
+  \item \emph{vertices} contains all vertices (a.k.a. points)
+
+  \item \emph{elements} contains all elements (a.k.a. polygons)
+
+  \item \emph{vertex} has a unique \emph{id}, that is then referenced in \emph{elements}, and it also has three coordinates
+  \emph{x}, \emph{y} and \emph{z}, all of which should be (but don't have to) be in the domain. Moreover it has a
+  property \emph{boundary} -- if it is 1 then this point is boundary, if it is 0 then it is not.
+
+  \item \emph{element} has only one property, \emph{vertices} that is a list of ids of vertices, ids are separated by
+  colons.
+
+\end{itemize}
+
+Example file:
+
+\begin{minted}[linenos,numbersep=5pt]{xml}
+<?xml version="1.0"?>
+<mesh width="3" height="3" domain_start_x="-1.000000"
+    domain_start_y="-1.000000" domain_start_z="0.000000"
+    domain_end_x="1.000000" domain_end_y="1.000000"
+    domain_end_z="2.000000" name="some 3 by 3 mesh" type="rectangular">
+  <vertices>
+    <vertex id="0" x="-1.000000" y="-1.000000" z="1.500000" boundary="1"/>
+    <vertex id="1" x="0.000000" y="-1.000000" z="1.500000" boundary="1"/>
+    <vertex id="2" x="1.000000" y="-1.000000" z="1.500000" boundary="1"/>
+    <vertex id="3" x="-1.000000" y="0.000000" z="0.000000" boundary="0"/>
+    <vertex id="4" x="0.000000" y="0.000000" z="0.000000" boundary="0"/>
+    <vertex id="5" x="1.000000" y="0.000000" z="0.000000" boundary="0"/>
+    <vertex id="6" x="-1.000000" y="1.000000" z="0.500000" boundary="1"/>
+    <vertex id="7" x="0.000000" y="1.000000" z="0.500000" boundary="1"/>
+    <vertex id="8" x="1.000000" y="1.000000" z="0.500000" boundary="1"/>
+  </vertices>
+  <elements>
+    <element vertices="0;1;4;3"/>
+    <element vertices="1;2;5;4"/>
+    <element vertices="3;4;7;6"/>
+    <element vertices="4;5;8;7"/>
+  </elements>
+</mesh>
+\end{minted}
+
+\newpage
+
+\section{Visualisation area}
+
+\begin{itemize}
+
+  \item In ``overview mode'' use dragging with left mouse button to change the point of view.
+
+  \item In ``editing mode'' use right mouse button click to edit data for a given point of the mesh.
+
+\end{itemize}
+
+There is a circle around the mesh, this circle serves as a guidance for where the lowest point (as defined by domain) of
+the mesh is.
+
+The visualisation area is also present in several other windows, but in those it is not interactive -- in mesh creation
+window it serves just as a preview of what will be created, and in examples window it shows what examples exactly can be
+loaded from there.
+
+It is important to remark that labels are quite consuming when it comes to processing power, and also they tend to make
+the mesh unreadable if mesh contains many elements. These are two good reasons to disable labels if you are going to
+work with meshes of size 30 by 30 or even larger.
+
+\section{Feedback from you}
+
+Please send my any suggestions you have about the project, as I am not planning to abandon it. Main reason is that I am
+using solutions developed here in my other open-source projects. Also, I welcome any contributions directly to the source
+code. If you'd like to join the project as a contributor, also please send me an email. 
+
+My address: \href{mailto:mb at mbdev.pl}{mb at mbdev.pl}  
+
+\end{document}
