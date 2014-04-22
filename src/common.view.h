@@ -59,6 +59,8 @@
 #include <QtGui>
 #include <QGLWidget>
 
+#include <qwt_mathml_text_engine.h>
+
 #include <gl/GLU.h>
 #include <FTGL/ftgl.h>
 //#include <glm/glm.hpp>

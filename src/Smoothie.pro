@@ -35,9 +35,17 @@ win32 {
 	DEPENDPATH += "D:/Projects/Cpp/Libraries/Includes/LibXML"
 	INCLUDEPATH += "D:/Projects/Cpp/Libraries/Includes/LibXML"
 
+	DEPENDPATH += "D:/Projects/Cpp/Libraries/Includes/Qwt"
+	INCLUDEPATH += "D:/Projects/Cpp/Libraries/Includes/Qwt"
+
 	LIBS += -L$$quote(D:/Projects/Cpp/Libraries) -lfreetype -lftgl -llibxml2
+	CONFIG(debug, debug|release) {
+		LIBS += -lqwtmathmld
+	} else {
+		LIBS += -lqwtmathml
+	}
 } else {
-	LIBS += -lfreetype -lftgl -llibxml2
+	LIBS += -lfreetype -lftgl -llibxml2 -lqwtmathml
 }
 
 CONFIG += precompile_header
