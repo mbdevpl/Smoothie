@@ -132,9 +132,10 @@ ground of size $9$ by $4$ meters, we have $36m^2$ in total, and therefore 36 ele
 
 Static fluid flow can be understood as the potential of how the water will flow given some initial conditions.
 
-(\ldots)
-
-%\begin{comment}
+Solving such problem can be equivalent to solving the afore-mentioned heat transfer problem, but with important remarks.
+First of all, potential fluid flow and potential heat transfer are not equivalent when we consider them very
+realisticly. Therefore, some simplifiactions must be made, if we wish to apply the same method for fluid flow as for
+heat transfer. Let me demonstrate an example of such situation. 
 
 For example we have something like this:
 
@@ -185,8 +186,6 @@ there is no viscosity, and also, that the particles of the fluid do not rotate. 
 condition is broken. If we would have stirred honey instead of tea, we would fail to fulfill both conditions, because
 even if we may neglect viscosity of water, we certainly shouldn't neglect viscosity of honey.
 
-%\end{comment}
-
 \subsection{Laplace's equation}
 
 From theoretical point of view, if you wish to determine how fast fluid flows at each location, or if you wish to
@@ -214,8 +213,6 @@ is important to remark that size is calculated using only two dimensions, as the
 \caption{a mesh consisting of triangular elements}
 \end{figure}
 
-%(\ldots)
-
 \subsubsection{Rectangular elements}
 
 Rectangular elements are those that have 4 vertices. In this solution, I assume that all rectangles are of the
@@ -227,8 +224,6 @@ same size. As in case of triangular elements, it is important to remember the me
 \end{center}
 \caption{a mesh consisting of rectangular elements}
 \end{figure}
-
-%(\ldots)
 
 \section{Implementation}
 
