@@ -1,0 +1,495 @@
+<?xml version="1.0"?>
+<mesh xmlns="http://schemas.mbdev.pl/smoothie/1.0" width="13" height="20" domain_start_x="-6.000000" domain_start_y="-10.000000" domain_start_z="0.000000" domain_end_x="6.000000" domain_end_y="10.000000" domain_end_z="1.000000" name="" type="rectangular">
+  <vertices>
+    <vertex id="0" x="-6.000000" y="-10.000000" z="0.000000" boundary="1"/>
+    <vertex id="1" x="-5.000000" y="-10.000000" z="0.000000" boundary="1"/>
+    <vertex id="2" x="-4.000000" y="-10.000000" z="0.000000" boundary="1"/>
+    <vertex id="3" x="-3.000000" y="-10.000000" z="0.000000" boundary="0"/>
+    <vertex id="4" x="-2.000000" y="-10.000000" z="0.000000" boundary="0"/>
+    <vertex id="5" x="-1.000000" y="-10.000000" z="0.000000" boundary="0"/>
+    <vertex id="6" x="0.000000" y="-10.000000" z="0.000000" boundary="0"/>
+    <vertex id="7" x="1.000000" y="-10.000000" z="0.000000" boundary="0"/>
+    <vertex id="8" x="2.000000" y="-10.000000" z="0.000000" boundary="0"/>
+    <vertex id="9" x="3.000000" y="-10.000000" z="0.000000" boundary="0"/>
+    <vertex id="10" x="4.000000" y="-10.000000" z="1.000000" boundary="1"/>
+    <vertex id="11" x="5.000000" y="-10.000000" z="1.000000" boundary="1"/>
+    <vertex id="12" x="6.000000" y="-10.000000" z="1.000000" boundary="1"/>
+    <vertex id="13" x="-6.000000" y="-8.947369" z="0.000000" boundary="1"/>
+    <vertex id="14" x="-5.000000" y="-8.950000" z="0.000000" boundary="1"/>
+    <vertex id="15" x="-4.000000" y="-8.950000" z="0.000000" boundary="1"/>
+    <vertex id="16" x="-3.000000" y="-8.947369" z="0.000000" boundary="0"/>
+    <vertex id="17" x="-2.000000" y="-8.947369" z="0.000000" boundary="0"/>
+    <vertex id="18" x="-1.000000" y="-8.947369" z="0.000000" boundary="0"/>
+    <vertex id="19" x="0.000000" y="-8.947369" z="0.000000" boundary="0"/>
+    <vertex id="20" x="1.000000" y="-8.947369" z="0.000000" boundary="0"/>
+    <vertex id="21" x="2.000000" y="-8.947369" z="0.000000" boundary="0"/>
+    <vertex id="22" x="3.000000" y="-8.947369" z="0.000000" boundary="0"/>
+    <vertex id="23" x="4.000000" y="-8.950000" z="1.000000" boundary="1"/>
+    <vertex id="24" x="5.000000" y="-8.950000" z="1.000000" boundary="1"/>
+    <vertex id="25" x="6.000000" y="-8.950000" z="1.000000" boundary="1"/>
+    <vertex id="26" x="-6.000000" y="-7.894737" z="0.000000" boundary="1"/>
+    <vertex id="27" x="-5.000000" y="-7.890000" z="0.000000" boundary="1"/>
+    <vertex id="28" x="-4.000000" y="-7.890000" z="0.000000" boundary="1"/>
+    <vertex id="29" x="-3.000000" y="-7.894737" z="0.000000" boundary="0"/>
+    <vertex id="30" x="-2.000000" y="-7.894737" z="0.000000" boundary="0"/>
+    <vertex id="31" x="-1.000000" y="-7.894737" z="0.000000" boundary="0"/>
+    <vertex id="32" x="0.000000" y="-7.894737" z="0.000000" boundary="0"/>
+    <vertex id="33" x="1.000000" y="-7.894737" z="0.000000" boundary="0"/>
+    <vertex id="34" x="2.000000" y="-7.894737" z="0.000000" boundary="0"/>
+    <vertex id="35" x="3.000000" y="-7.894737" z="0.000000" boundary="0"/>
+    <vertex id="36" x="4.000000" y="-7.890000" z="1.000000" boundary="1"/>
+    <vertex id="37" x="5.000000" y="-7.890000" z="1.000000" boundary="1"/>
+    <vertex id="38" x="6.000000" y="-7.890000" z="1.000000" boundary="1"/>
+    <vertex id="39" x="-6.000000" y="-6.842105" z="0.000000" boundary="1"/>
+    <vertex id="40" x="-5.000000" y="-6.840000" z="0.000000" boundary="1"/>
+    <vertex id="41" x="-4.000000" y="-6.840000" z="0.000000" boundary="1"/>
+    <vertex id="42" x="-3.000000" y="-6.842105" z="0.000000" boundary="0"/>
+    <vertex id="43" x="-2.000000" y="-6.842105" z="0.000000" boundary="0"/>
+    <vertex id="44" x="-1.000000" y="-6.842105" z="0.000000" boundary="0"/>
+    <vertex id="45" x="0.000000" y="-6.842105" z="0.000000" boundary="0"/>
+    <vertex id="46" x="1.000000" y="-6.842105" z="0.000000" boundary="0"/>
+    <vertex id="47" x="2.000000" y="-6.842105" z="0.000000" boundary="0"/>
+    <vertex id="48" x="3.000000" y="-6.842105" z="0.000000" boundary="0"/>
+    <vertex id="49" x="4.000000" y="-6.840000" z="1.000000" boundary="1"/>
+    <vertex id="50" x="5.000000" y="-6.840000" z="1.000000" boundary="1"/>
+    <vertex id="51" x="6.000000" y="-6.840000" z="1.000000" boundary="1"/>
+    <vertex id="52" x="-6.000000" y="-5.789474" z="0.000000" boundary="1"/>
+    <vertex id="53" x="-5.000000" y="-5.790000" z="0.000000" boundary="1"/>
+    <vertex id="54" x="-4.000000" y="-5.790000" z="0.000000" boundary="1"/>
+    <vertex id="55" x="-3.000000" y="-5.789474" z="0.000000" boundary="0"/>
+    <vertex id="56" x="-2.000000" y="-5.789474" z="0.000000" boundary="0"/>
+    <vertex id="57" x="-1.000000" y="-5.789474" z="0.000000" boundary="0"/>
+    <vertex id="58" x="0.000000" y="-5.789474" z="0.000000" boundary="0"/>
+    <vertex id="59" x="1.000000" y="-5.789474" z="0.000000" boundary="0"/>
+    <vertex id="60" x="2.000000" y="-5.789474" z="0.000000" boundary="0"/>
+    <vertex id="61" x="3.000000" y="-5.789474" z="0.000000" boundary="0"/>
+    <vertex id="62" x="4.000000" y="-5.790000" z="1.000000" boundary="1"/>
+    <vertex id="63" x="5.000000" y="-5.790000" z="1.000000" boundary="1"/>
+    <vertex id="64" x="6.000000" y="-5.790000" z="1.000000" boundary="1"/>
+    <vertex id="65" x="-6.000000" y="-4.736842" z="0.000000" boundary="1"/>
+    <vertex id="66" x="-5.000000" y="-4.740000" z="0.000000" boundary="1"/>
+    <vertex id="67" x="-4.000000" y="-4.740000" z="0.000000" boundary="1"/>
+    <vertex id="68" x="-3.000000" y="-4.736842" z="0.000000" boundary="0"/>
+    <vertex id="69" x="-2.000000" y="-4.736842" z="0.000000" boundary="0"/>
+    <vertex id="70" x="-1.000000" y="-4.736842" z="0.000000" boundary="0"/>
+    <vertex id="71" x="0.000000" y="-4.736842" z="0.000000" boundary="0"/>
+    <vertex id="72" x="1.000000" y="-4.736842" z="0.000000" boundary="0"/>
+    <vertex id="73" x="2.000000" y="-4.736842" z="0.000000" boundary="0"/>
+    <vertex id="74" x="3.000000" y="-4.736842" z="0.000000" boundary="0"/>
+    <vertex id="75" x="4.000000" y="-4.740000" z="1.000000" boundary="1"/>
+    <vertex id="76" x="5.000000" y="-4.740000" z="1.000000" boundary="1"/>
+    <vertex id="77" x="6.000000" y="-4.740000" z="1.000000" boundary="1"/>
+    <vertex id="78" x="-6.000000" y="-3.684210" z="0.000000" boundary="1"/>
+    <vertex id="79" x="-5.000000" y="-3.680000" z="0.000000" boundary="1"/>
+    <vertex id="80" x="-4.000000" y="-3.680000" z="0.000000" boundary="1"/>
+    <vertex id="81" x="-3.000000" y="-3.684210" z="0.000000" boundary="0"/>
+    <vertex id="82" x="-2.000000" y="-3.684210" z="0.000000" boundary="0"/>
+    <vertex id="83" x="-1.000000" y="-3.684210" z="0.000000" boundary="0"/>
+    <vertex id="84" x="0.000000" y="-3.684210" z="0.000000" boundary="0"/>
+    <vertex id="85" x="1.000000" y="-3.684210" z="0.000000" boundary="0"/>
+    <vertex id="86" x="2.000000" y="-3.684210" z="0.000000" boundary="0"/>
+    <vertex id="87" x="3.000000" y="-3.684210" z="0.000000" boundary="0"/>
+    <vertex id="88" x="4.000000" y="-3.680000" z="1.000000" boundary="1"/>
+    <vertex id="89" x="5.000000" y="-3.680000" z="1.000000" boundary="1"/>
+    <vertex id="90" x="6.000000" y="-3.680000" z="1.000000" boundary="1"/>
+    <vertex id="91" x="-6.000000" y="-2.631578" z="0.000000" boundary="1"/>
+    <vertex id="92" x="-5.000000" y="-2.630000" z="0.000000" boundary="1"/>
+    <vertex id="93" x="-4.000000" y="-2.630000" z="0.000000" boundary="1"/>
+    <vertex id="94" x="-3.000000" y="-2.631578" z="0.000000" boundary="0"/>
+    <vertex id="95" x="-2.000000" y="-2.631578" z="0.000000" boundary="0"/>
+    <vertex id="96" x="-1.000000" y="-2.631578" z="0.000000" boundary="0"/>
+    <vertex id="97" x="0.000000" y="-2.631578" z="0.000000" boundary="0"/>
+    <vertex id="98" x="1.000000" y="-2.631578" z="0.000000" boundary="0"/>
+    <vertex id="99" x="2.000000" y="-2.631578" z="0.000000" boundary="0"/>
+    <vertex id="100" x="3.000000" y="-2.631578" z="0.000000" boundary="0"/>
+    <vertex id="101" x="4.000000" y="-2.630000" z="1.000000" boundary="1"/>
+    <vertex id="102" x="5.000000" y="-2.630000" z="1.000000" boundary="1"/>
+    <vertex id="103" x="6.000000" y="-2.630000" z="1.000000" boundary="1"/>
+    <vertex id="104" x="-6.000000" y="-1.578947" z="0.000000" boundary="1"/>
+    <vertex id="105" x="-5.000000" y="-1.580000" z="0.000000" boundary="1"/>
+    <vertex id="106" x="-4.000000" y="-1.580000" z="0.000000" boundary="1"/>
+    <vertex id="107" x="-3.000000" y="-1.578947" z="0.000000" boundary="0"/>
+    <vertex id="108" x="-2.000000" y="-1.578947" z="0.000000" boundary="0"/>
+    <vertex id="109" x="-1.000000" y="-1.578947" z="0.000000" boundary="0"/>
+    <vertex id="110" x="0.000000" y="-1.578947" z="0.000000" boundary="0"/>
+    <vertex id="111" x="1.000000" y="-1.578947" z="0.000000" boundary="0"/>
+    <vertex id="112" x="2.000000" y="-1.578947" z="0.000000" boundary="0"/>
+    <vertex id="113" x="3.000000" y="-1.578947" z="0.000000" boundary="0"/>
+    <vertex id="114" x="4.000000" y="-1.580000" z="1.000000" boundary="1"/>
+    <vertex id="115" x="5.000000" y="-1.580000" z="1.000000" boundary="1"/>
+    <vertex id="116" x="6.000000" y="-1.580000" z="1.000000" boundary="1"/>
+    <vertex id="117" x="-6.000000" y="-0.526316" z="0.000000" boundary="1"/>
+    <vertex id="118" x="-5.000000" y="-0.530000" z="0.000000" boundary="1"/>
+    <vertex id="119" x="-4.000000" y="-0.526316" z="0.000000" boundary="0"/>
+    <vertex id="120" x="-3.000000" y="-0.526316" z="0.000000" boundary="0"/>
+    <vertex id="121" x="-2.000000" y="-0.526316" z="0.000000" boundary="0"/>
+    <vertex id="122" x="-1.000000" y="-0.526316" z="0.000000" boundary="0"/>
+    <vertex id="123" x="0.000000" y="-0.526316" z="0.000000" boundary="0"/>
+    <vertex id="124" x="1.000000" y="-0.526316" z="0.000000" boundary="0"/>
+    <vertex id="125" x="2.000000" y="-0.526316" z="0.000000" boundary="0"/>
+    <vertex id="126" x="3.000000" y="-0.526316" z="0.000000" boundary="0"/>
+    <vertex id="127" x="4.000000" y="-0.526316" z="0.000000" boundary="0"/>
+    <vertex id="128" x="5.000000" y="-0.530000" z="1.000000" boundary="1"/>
+    <vertex id="129" x="6.000000" y="-0.530000" z="1.000000" boundary="1"/>
+    <vertex id="130" x="-6.000000" y="0.526316" z="0.000000" boundary="1"/>
+    <vertex id="131" x="-5.000000" y="0.526316" z="0.000000" boundary="0"/>
+    <vertex id="132" x="-4.000000" y="0.526316" z="0.000000" boundary="0"/>
+    <vertex id="133" x="-3.000000" y="0.526316" z="0.000000" boundary="0"/>
+    <vertex id="134" x="-2.000000" y="0.526316" z="0.000000" boundary="0"/>
+    <vertex id="135" x="-1.000000" y="0.526316" z="0.000000" boundary="0"/>
+    <vertex id="136" x="0.000000" y="0.526316" z="0.000000" boundary="0"/>
+    <vertex id="137" x="1.000000" y="0.526316" z="0.000000" boundary="0"/>
+    <vertex id="138" x="2.000000" y="0.526316" z="0.000000" boundary="0"/>
+    <vertex id="139" x="3.000000" y="0.526316" z="0.000000" boundary="0"/>
+    <vertex id="140" x="4.000000" y="0.526316" z="0.000000" boundary="0"/>
+    <vertex id="141" x="5.000000" y="0.526316" z="0.000000" boundary="0"/>
+    <vertex id="142" x="6.000000" y="0.530000" z="1.000000" boundary="1"/>
+    <vertex id="143" x="-6.000000" y="1.578948" z="0.000000" boundary="1"/>
+    <vertex id="144" x="-5.000000" y="1.578948" z="0.000000" boundary="0"/>
+    <vertex id="145" x="-4.000000" y="1.578948" z="0.000000" boundary="0"/>
+    <vertex id="146" x="-3.000000" y="1.578948" z="0.000000" boundary="0"/>
+    <vertex id="147" x="-2.000000" y="1.578948" z="0.000000" boundary="0"/>
+    <vertex id="148" x="-1.000000" y="1.578948" z="0.000000" boundary="0"/>
+    <vertex id="149" x="0.000000" y="1.578948" z="0.000000" boundary="0"/>
+    <vertex id="150" x="1.000000" y="1.578948" z="0.000000" boundary="0"/>
+    <vertex id="151" x="2.000000" y="1.578948" z="0.000000" boundary="0"/>
+    <vertex id="152" x="3.000000" y="1.578948" z="0.000000" boundary="0"/>
+    <vertex id="153" x="4.000000" y="1.578948" z="0.000000" boundary="0"/>
+    <vertex id="154" x="5.000000" y="1.578948" z="0.000000" boundary="0"/>
+    <vertex id="155" x="6.000000" y="1.580000" z="1.000000" boundary="1"/>
+    <vertex id="156" x="-6.000000" y="2.631579" z="0.000000" boundary="1"/>
+    <vertex id="157" x="-5.000000" y="2.631579" z="0.000000" boundary="0"/>
+    <vertex id="158" x="-4.000000" y="2.631579" z="0.000000" boundary="0"/>
+    <vertex id="159" x="-3.000000" y="2.631579" z="0.000000" boundary="0"/>
+    <vertex id="160" x="-2.000000" y="2.631579" z="0.000000" boundary="0"/>
+    <vertex id="161" x="-1.000000" y="2.631579" z="0.000000" boundary="0"/>
+    <vertex id="162" x="0.000000" y="2.631579" z="0.000000" boundary="0"/>
+    <vertex id="163" x="1.000000" y="2.631579" z="0.000000" boundary="0"/>
+    <vertex id="164" x="2.000000" y="2.631579" z="0.000000" boundary="0"/>
+    <vertex id="165" x="3.000000" y="2.631579" z="0.000000" boundary="0"/>
+    <vertex id="166" x="4.000000" y="2.631579" z="0.000000" boundary="0"/>
+    <vertex id="167" x="5.000000" y="2.631579" z="0.000000" boundary="0"/>
+    <vertex id="168" x="6.000000" y="2.630000" z="1.000000" boundary="1"/>
+    <vertex id="169" x="-6.000000" y="3.684211" z="0.000000" boundary="1"/>
+    <vertex id="170" x="-5.000000" y="3.684211" z="0.000000" boundary="0"/>
+    <vertex id="171" x="-4.000000" y="3.684211" z="0.000000" boundary="0"/>
+    <vertex id="172" x="-3.000000" y="3.684211" z="0.000000" boundary="0"/>
+    <vertex id="173" x="-2.000000" y="3.684211" z="0.000000" boundary="0"/>
+    <vertex id="174" x="-1.000000" y="3.684211" z="0.000000" boundary="0"/>
+    <vertex id="175" x="0.000000" y="3.684211" z="0.000000" boundary="0"/>
+    <vertex id="176" x="1.000000" y="3.684211" z="0.000000" boundary="0"/>
+    <vertex id="177" x="2.000000" y="3.684211" z="0.000000" boundary="0"/>
+    <vertex id="178" x="3.000000" y="3.684211" z="0.000000" boundary="0"/>
+    <vertex id="179" x="4.000000" y="3.684211" z="0.000000" boundary="0"/>
+    <vertex id="180" x="5.000000" y="3.684211" z="0.000000" boundary="0"/>
+    <vertex id="181" x="6.000000" y="3.680000" z="1.000000" boundary="1"/>
+    <vertex id="182" x="-6.000000" y="4.736843" z="0.000000" boundary="1"/>
+    <vertex id="183" x="-5.000000" y="4.736843" z="0.000000" boundary="0"/>
+    <vertex id="184" x="-4.000000" y="4.736843" z="0.000000" boundary="0"/>
+    <vertex id="185" x="-3.000000" y="4.736843" z="0.000000" boundary="0"/>
+    <vertex id="186" x="-2.000000" y="4.736843" z="0.000000" boundary="0"/>
+    <vertex id="187" x="-1.000000" y="4.736843" z="0.000000" boundary="0"/>
+    <vertex id="188" x="0.000000" y="4.736843" z="0.000000" boundary="0"/>
+    <vertex id="189" x="1.000000" y="4.736843" z="0.000000" boundary="0"/>
+    <vertex id="190" x="2.000000" y="4.736843" z="0.000000" boundary="0"/>
+    <vertex id="191" x="3.000000" y="4.736843" z="0.000000" boundary="0"/>
+    <vertex id="192" x="4.000000" y="4.736843" z="0.000000" boundary="0"/>
+    <vertex id="193" x="5.000000" y="4.736843" z="0.000000" boundary="0"/>
+    <vertex id="194" x="6.000000" y="4.740000" z="1.000000" boundary="1"/>
+    <vertex id="195" x="-6.000000" y="5.789474" z="0.000000" boundary="1"/>
+    <vertex id="196" x="-5.000000" y="5.789474" z="0.000000" boundary="0"/>
+    <vertex id="197" x="-4.000000" y="5.789474" z="0.000000" boundary="0"/>
+    <vertex id="198" x="-3.000000" y="5.789474" z="0.000000" boundary="0"/>
+    <vertex id="199" x="-2.000000" y="5.789474" z="0.000000" boundary="0"/>
+    <vertex id="200" x="-1.000000" y="5.789474" z="0.000000" boundary="0"/>
+    <vertex id="201" x="0.000000" y="5.789474" z="0.000000" boundary="0"/>
+    <vertex id="202" x="1.000000" y="5.789474" z="0.000000" boundary="0"/>
+    <vertex id="203" x="2.000000" y="5.789474" z="0.000000" boundary="0"/>
+    <vertex id="204" x="3.000000" y="5.789474" z="0.000000" boundary="0"/>
+    <vertex id="205" x="4.000000" y="5.789474" z="0.000000" boundary="0"/>
+    <vertex id="206" x="5.000000" y="5.789474" z="0.000000" boundary="0"/>
+    <vertex id="207" x="6.000000" y="5.790000" z="1.000000" boundary="1"/>
+    <vertex id="208" x="-6.000000" y="6.842106" z="0.000000" boundary="1"/>
+    <vertex id="209" x="-5.000000" y="6.842106" z="0.000000" boundary="0"/>
+    <vertex id="210" x="-4.000000" y="6.842106" z="0.000000" boundary="0"/>
+    <vertex id="211" x="-3.000000" y="6.842106" z="0.000000" boundary="0"/>
+    <vertex id="212" x="-2.000000" y="6.842106" z="0.000000" boundary="0"/>
+    <vertex id="213" x="-1.000000" y="6.842106" z="0.000000" boundary="0"/>
+    <vertex id="214" x="0.000000" y="6.842106" z="0.000000" boundary="0"/>
+    <vertex id="215" x="1.000000" y="6.842106" z="0.000000" boundary="0"/>
+    <vertex id="216" x="2.000000" y="6.842106" z="0.000000" boundary="0"/>
+    <vertex id="217" x="3.000000" y="6.842106" z="0.000000" boundary="0"/>
+    <vertex id="218" x="4.000000" y="6.842106" z="0.000000" boundary="0"/>
+    <vertex id="219" x="5.000000" y="6.842106" z="0.000000" boundary="0"/>
+    <vertex id="220" x="6.000000" y="6.840000" z="1.000000" boundary="1"/>
+    <vertex id="221" x="-6.000000" y="7.894737" z="0.000000" boundary="1"/>
+    <vertex id="222" x="-5.000000" y="7.894737" z="0.000000" boundary="0"/>
+    <vertex id="223" x="-4.000000" y="7.894737" z="0.000000" boundary="0"/>
+    <vertex id="224" x="-3.000000" y="7.894737" z="0.000000" boundary="0"/>
+    <vertex id="225" x="-2.000000" y="7.894737" z="0.000000" boundary="0"/>
+    <vertex id="226" x="-1.000000" y="7.894737" z="0.000000" boundary="0"/>
+    <vertex id="227" x="0.000000" y="7.894737" z="0.000000" boundary="0"/>
+    <vertex id="228" x="1.000000" y="7.894737" z="0.000000" boundary="0"/>
+    <vertex id="229" x="2.000000" y="7.894737" z="0.000000" boundary="0"/>
+    <vertex id="230" x="3.000000" y="7.894737" z="0.000000" boundary="0"/>
+    <vertex id="231" x="4.000000" y="7.894737" z="0.000000" boundary="0"/>
+    <vertex id="232" x="5.000000" y="7.894737" z="0.000000" boundary="0"/>
+    <vertex id="233" x="6.000000" y="7.890000" z="1.000000" boundary="1"/>
+    <vertex id="234" x="-6.000000" y="8.947369" z="0.000000" boundary="1"/>
+    <vertex id="235" x="-5.000000" y="8.947369" z="0.000000" boundary="0"/>
+    <vertex id="236" x="-4.000000" y="8.947369" z="0.000000" boundary="0"/>
+    <vertex id="237" x="-3.000000" y="8.947369" z="0.000000" boundary="0"/>
+    <vertex id="238" x="-2.000000" y="8.947369" z="0.000000" boundary="0"/>
+    <vertex id="239" x="-1.000000" y="8.947369" z="0.000000" boundary="0"/>
+    <vertex id="240" x="0.000000" y="8.947369" z="0.000000" boundary="0"/>
+    <vertex id="241" x="1.000000" y="8.947369" z="0.000000" boundary="0"/>
+    <vertex id="242" x="2.000000" y="8.947369" z="0.000000" boundary="0"/>
+    <vertex id="243" x="3.000000" y="8.947369" z="0.000000" boundary="0"/>
+    <vertex id="244" x="4.000000" y="8.947369" z="0.000000" boundary="0"/>
+    <vertex id="245" x="5.000000" y="8.947369" z="0.000000" boundary="0"/>
+    <vertex id="246" x="6.000000" y="8.950000" z="1.000000" boundary="1"/>
+    <vertex id="247" x="-6.000000" y="10.000000" z="0.000000" boundary="1"/>
+    <vertex id="248" x="-5.000000" y="10.000000" z="0.000000" boundary="0"/>
+    <vertex id="249" x="-4.000000" y="10.000000" z="0.000000" boundary="0"/>
+    <vertex id="250" x="-3.000000" y="10.000000" z="0.000000" boundary="0"/>
+    <vertex id="251" x="-2.000000" y="10.000000" z="0.000000" boundary="0"/>
+    <vertex id="252" x="-1.000000" y="10.000000" z="0.000000" boundary="0"/>
+    <vertex id="253" x="0.000000" y="10.000000" z="0.000000" boundary="0"/>
+    <vertex id="254" x="1.000000" y="10.000000" z="0.000000" boundary="0"/>
+    <vertex id="255" x="2.000000" y="10.000000" z="0.000000" boundary="0"/>
+    <vertex id="256" x="3.000000" y="10.000000" z="0.000000" boundary="0"/>
+    <vertex id="257" x="4.000000" y="10.000000" z="0.000000" boundary="0"/>
+    <vertex id="258" x="5.000000" y="10.000000" z="0.000000" boundary="0"/>
+    <vertex id="259" x="6.000000" y="10.000000" z="1.000000" boundary="1"/>
+  </vertices>
+  <elements>
+    <element vertices="0;1;14;13"/>
+    <element vertices="1;2;15;14"/>
+    <element vertices="2;3;16;15"/>
+    <element vertices="3;4;17;16"/>
+    <element vertices="4;5;18;17"/>
+    <element vertices="5;6;19;18"/>
+    <element vertices="6;7;20;19"/>
+    <element vertices="7;8;21;20"/>
+    <element vertices="8;9;22;21"/>
+    <element vertices="9;10;23;22"/>
+    <element vertices="10;11;24;23"/>
+    <element vertices="11;12;25;24"/>
+    <element vertices="13;14;27;26"/>
+    <element vertices="14;15;28;27"/>
+    <element vertices="15;16;29;28"/>
+    <element vertices="16;17;30;29"/>
+    <element vertices="17;18;31;30"/>
+    <element vertices="18;19;32;31"/>
+    <element vertices="19;20;33;32"/>
+    <element vertices="20;21;34;33"/>
+    <element vertices="21;22;35;34"/>
+    <element vertices="22;23;36;35"/>
+    <element vertices="23;24;37;36"/>
+    <element vertices="24;25;38;37"/>
+    <element vertices="26;27;40;39"/>
+    <element vertices="27;28;41;40"/>
+    <element vertices="28;29;42;41"/>
+    <element vertices="29;30;43;42"/>
+    <element vertices="30;31;44;43"/>
+    <element vertices="31;32;45;44"/>
+    <element vertices="32;33;46;45"/>
+    <element vertices="33;34;47;46"/>
+    <element vertices="34;35;48;47"/>
+    <element vertices="35;36;49;48"/>
+    <element vertices="36;37;50;49"/>
+    <element vertices="37;38;51;50"/>
+    <element vertices="39;40;53;52"/>
+    <element vertices="40;41;54;53"/>
+    <element vertices="41;42;55;54"/>
+    <element vertices="42;43;56;55"/>
+    <element vertices="43;44;57;56"/>
+    <element vertices="44;45;58;57"/>
+    <element vertices="45;46;59;58"/>
+    <element vertices="46;47;60;59"/>
+    <element vertices="47;48;61;60"/>
+    <element vertices="48;49;62;61"/>
+    <element vertices="49;50;63;62"/>
+    <element vertices="50;51;64;63"/>
+    <element vertices="52;53;66;65"/>
+    <element vertices="53;54;67;66"/>
+    <element vertices="54;55;68;67"/>
+    <element vertices="55;56;69;68"/>
+    <element vertices="56;57;70;69"/>
+    <element vertices="57;58;71;70"/>
+    <element vertices="58;59;72;71"/>
+    <element vertices="59;60;73;72"/>
+    <element vertices="60;61;74;73"/>
+    <element vertices="61;62;75;74"/>
+    <element vertices="62;63;76;75"/>
+    <element vertices="63;64;77;76"/>
+    <element vertices="65;66;79;78"/>
+    <element vertices="66;67;80;79"/>
+    <element vertices="67;68;81;80"/>
+    <element vertices="68;69;82;81"/>
+    <element vertices="69;70;83;82"/>
+    <element vertices="70;71;84;83"/>
+    <element vertices="71;72;85;84"/>
+    <element vertices="72;73;86;85"/>
+    <element vertices="73;74;87;86"/>
+    <element vertices="74;75;88;87"/>
+    <element vertices="75;76;89;88"/>
+    <element vertices="76;77;90;89"/>
+    <element vertices="78;79;92;91"/>
+    <element vertices="79;80;93;92"/>
+    <element vertices="80;81;94;93"/>
+    <element vertices="81;82;95;94"/>
+    <element vertices="82;83;96;95"/>
+    <element vertices="83;84;97;96"/>
+    <element vertices="84;85;98;97"/>
+    <element vertices="85;86;99;98"/>
+    <element vertices="86;87;100;99"/>
+    <element vertices="87;88;101;100"/>
+    <element vertices="88;89;102;101"/>
+    <element vertices="89;90;103;102"/>
+    <element vertices="91;92;105;104"/>
+    <element vertices="92;93;106;105"/>
+    <element vertices="93;94;107;106"/>
+    <element vertices="94;95;108;107"/>
+    <element vertices="95;96;109;108"/>
+    <element vertices="96;97;110;109"/>
+    <element vertices="97;98;111;110"/>
+    <element vertices="98;99;112;111"/>
+    <element vertices="99;100;113;112"/>
+    <element vertices="100;101;114;113"/>
+    <element vertices="101;102;115;114"/>
+    <element vertices="102;103;116;115"/>
+    <element vertices="104;105;118;117"/>
+    <element vertices="105;106;119;118"/>
+    <element vertices="106;107;120;119"/>
+    <element vertices="107;108;121;120"/>
+    <element vertices="108;109;122;121"/>
+    <element vertices="109;110;123;122"/>
+    <element vertices="110;111;124;123"/>
+    <element vertices="111;112;125;124"/>
+    <element vertices="112;113;126;125"/>
+    <element vertices="113;114;127;126"/>
+    <element vertices="114;115;128;127"/>
+    <element vertices="115;116;129;128"/>
+    <element vertices="117;118;131;130"/>
+    <element vertices="118;119;132;131"/>
+    <element vertices="119;120;133;132"/>
+    <element vertices="120;121;134;133"/>
+    <element vertices="121;122;135;134"/>
+    <element vertices="122;123;136;135"/>
+    <element vertices="123;124;137;136"/>
+    <element vertices="124;125;138;137"/>
+    <element vertices="125;126;139;138"/>
+    <element vertices="126;127;140;139"/>
+    <element vertices="127;128;141;140"/>
+    <element vertices="128;129;142;141"/>
+    <element vertices="130;131;144;143"/>
+    <element vertices="131;132;145;144"/>
+    <element vertices="132;133;146;145"/>
+    <element vertices="133;134;147;146"/>
+    <element vertices="134;135;148;147"/>
+    <element vertices="135;136;149;148"/>
+    <element vertices="136;137;150;149"/>
+    <element vertices="137;138;151;150"/>
+    <element vertices="138;139;152;151"/>
+    <element vertices="139;140;153;152"/>
+    <element vertices="140;141;154;153"/>
+    <element vertices="141;142;155;154"/>
+    <element vertices="143;144;157;156"/>
+    <element vertices="144;145;158;157"/>
+    <element vertices="145;146;159;158"/>
+    <element vertices="146;147;160;159"/>
+    <element vertices="147;148;161;160"/>
+    <element vertices="148;149;162;161"/>
+    <element vertices="149;150;163;162"/>
+    <element vertices="150;151;164;163"/>
+    <element vertices="151;152;165;164"/>
+    <element vertices="152;153;166;165"/>
+    <element vertices="153;154;167;166"/>
+    <element vertices="154;155;168;167"/>
+    <element vertices="156;157;170;169"/>
+    <element vertices="157;158;171;170"/>
+    <element vertices="158;159;172;171"/>
+    <element vertices="159;160;173;172"/>
+    <element vertices="160;161;174;173"/>
+    <element vertices="161;162;175;174"/>
+    <element vertices="162;163;176;175"/>
+    <element vertices="163;164;177;176"/>
+    <element vertices="164;165;178;177"/>
+    <element vertices="165;166;179;178"/>
+    <element vertices="166;167;180;179"/>
+    <element vertices="167;168;181;180"/>
+    <element vertices="169;170;183;182"/>
+    <element vertices="170;171;184;183"/>
+    <element vertices="171;172;185;184"/>
+    <element vertices="172;173;186;185"/>
+    <element vertices="173;174;187;186"/>
+    <element vertices="174;175;188;187"/>
+    <element vertices="175;176;189;188"/>
+    <element vertices="176;177;190;189"/>
+    <element vertices="177;178;191;190"/>
+    <element vertices="178;179;192;191"/>
+    <element vertices="179;180;193;192"/>
+    <element vertices="180;181;194;193"/>
+    <element vertices="182;183;196;195"/>
+    <element vertices="183;184;197;196"/>
+    <element vertices="184;185;198;197"/>
+    <element vertices="185;186;199;198"/>
+    <element vertices="186;187;200;199"/>
+    <element vertices="187;188;201;200"/>
+    <element vertices="188;189;202;201"/>
+    <element vertices="189;190;203;202"/>
+    <element vertices="190;191;204;203"/>
+    <element vertices="191;192;205;204"/>
+    <element vertices="192;193;206;205"/>
+    <element vertices="193;194;207;206"/>
+    <element vertices="195;196;209;208"/>
+    <element vertices="196;197;210;209"/>
+    <element vertices="197;198;211;210"/>
+    <element vertices="198;199;212;211"/>
+    <element vertices="199;200;213;212"/>
+    <element vertices="200;201;214;213"/>
+    <element vertices="201;202;215;214"/>
+    <element vertices="202;203;216;215"/>
+    <element vertices="203;204;217;216"/>
+    <element vertices="204;205;218;217"/>
+    <element vertices="205;206;219;218"/>
+    <element vertices="206;207;220;219"/>
+    <element vertices="208;209;222;221"/>
+    <element vertices="209;210;223;222"/>
+    <element vertices="210;211;224;223"/>
+    <element vertices="211;212;225;224"/>
+    <element vertices="212;213;226;225"/>
+    <element vertices="213;214;227;226"/>
+    <element vertices="214;215;228;227"/>
+    <element vertices="215;216;229;228"/>
+    <element vertices="216;217;230;229"/>
+    <element vertices="217;218;231;230"/>
+    <element vertices="218;219;232;231"/>
+    <element vertices="219;220;233;232"/>
+    <element vertices="221;222;235;234"/>
+    <element vertices="222;223;236;235"/>
+    <element vertices="223;224;237;236"/>
+    <element vertices="224;225;238;237"/>
+    <element vertices="225;226;239;238"/>
+    <element vertices="226;227;240;239"/>
+    <element vertices="227;228;241;240"/>
+    <element vertices="228;229;242;241"/>
+    <element vertices="229;230;243;242"/>
+    <element vertices="230;231;244;243"/>
+    <element vertices="231;232;245;244"/>
+    <element vertices="232;233;246;245"/>
+    <element vertices="234;235;248;247"/>
+    <element vertices="235;236;249;248"/>
+    <element vertices="236;237;250;249"/>
+    <element vertices="237;238;251;250"/>
+    <element vertices="238;239;252;251"/>
+    <element vertices="239;240;253;252"/>
+    <element vertices="240;241;254;253"/>
+    <element vertices="241;242;255;254"/>
+    <element vertices="242;243;256;255"/>
+    <element vertices="243;244;257;256"/>
+    <element vertices="244;245;258;257"/>
+    <element vertices="245;246;259;258"/>
+  </elements>
+</mesh>
