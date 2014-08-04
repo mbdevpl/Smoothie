@@ -45,7 +45,16 @@ win32 {
 		LIBS += -lqwtmathml
 	}
 } else {
-	LIBS += -lfreetype -lftgl -llibxml2 -lqwtmathml
+	CONFIG += c++11
+
+	INCLUDEPATH += $$quote(/usr/include/boost)
+	#INCLUDEPATH += $$quote(/usr/include) # OpenGL
+	INCLUDEPATH += $$quote(/usr/include/freetype2)
+	INCLUDEPATH += $$quote(/usr/include/libxml2)
+	INCLUDEPATH += $$quote(/usr/include/qwt)
+
+	#LIBS += -L$$quote(/usr/lib/x86_64-linux-gnu)
+	LIBS += -lfreetype -lGLU -lftgl -lxml2 -lqwtmathml
 }
 
 CONFIG += precompile_header

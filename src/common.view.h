@@ -25,7 +25,9 @@
 #endif
 
 #include <algorithm>
+#ifdef WINDOWS
 #include <xutility>
+#endif
 
 #ifdef WINDOWS
 #pragma warning(pop)
@@ -61,7 +63,7 @@
 
 #include <qwt_mathml_text_engine.h>
 
-#include <gl/GLU.h>
+#include <GL/glu.h>
 #include <FTGL/ftgl.h>
 //#include <glm/glm.hpp>
 
