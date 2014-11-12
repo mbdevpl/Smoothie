@@ -1,6 +1,5 @@
 /bin/debug
 /bin/release
-/build-debug
-/build-release
+/build*
 /doc/html
 /src/Smoothie.pro.user
