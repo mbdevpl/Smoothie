@@ -1,6 +1,9 @@
 Smoothie
 ========
 
+[![build status from Travis CI](https://travis-ci.org/mbdevpl/Smoothie.svg?branch=master)](https://travis-ci.org/mbdevpl/Smoothie)
+[![license](https://img.shields.io/github/license/mbdevpl/Smoothie.svg)](https://github.com/mbdevpl/Smoothie)
+
 ## About
 
 Static fluid/heat flow simulator.

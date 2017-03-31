@@ -1,0 +1,34 @@
+sudo: required
+language: cpp
+os:
+  - linux
+#  - osx
+
+compiler:
+  - clang
+  - gcc
+
+install:
+  - sudo apt-add-repository -y ppa:ubuntu-toolchain-r/test
+  - sudo apt-add-repository -y ppa:beineri/opt-qt562
+#  - sudo apt-add-repository -y ppa:beineri/opt-qt58-trusty
+  - sudo apt-get -qq update
+  - sudo apt-get install qt56base qt56tools qt56canvas3d qt56svg
+#  - sudo apt-get install qt58base qt58tools
+  - sudo apt-get install libftgl-dev
+  - sudo apt-get install libboost-all-dev
+  - bash install_qwt.sh
+
+before_script:
+  - /opt/qt56/bin/qmake --version
+  - /opt/qt56/bin/qmake src/Smoothie.pro
+
+script:
+  - make
+
+#after_success:
+#  - ls -lah
+
+notifications:
+  slack:
+    secure: FyBKD0MsKlDspSB7V6TnCtOi5zxxgpLRDh9rxIFZbMA0PZPe8i811y6jxmDdbUyV8khIks6N84VV5Zec2fOGC+PeoNr41qwTj2FhLPIiRCjyhr0HvvrIimCSpJtwrcsATm7n9eSP7aPCt0DjZVt+VwKdvtzuZROwrcH22ZIvqFPX8eLN/3wiBOyam8cXWJ3FnNp1QKmMghkjXMSz8/0WktFscP3gXanVo/r18prRKT/FBfMeWxMLpgUl8oXu2PaQGPWMszoVzIn2Tdd8VemzWjeKb4QKZuX/nwBwPKUuv9mXXc3jBlUD7zJ6bEQhmIDFtZuo8DWd8dQNdbGGMlE2nNHvGgymjnH2QuPvu+T99ZdwFx12KUmW50ylq+HxtXG3+z/HEtC9P2AX9HM2eYnYZ8WjAsBdMBXemjutaCMT+n0m09+IYp2n7AvuacgJ7byI2GVTxGWlcj62dAk84CLcszYdMnJljvEET1Z4ZkcpG+b5iEnBbi0UBGeLdCtOAnLwDGm8B+TiDCrI9O5zwanJLEo0F4Lv+u9i/nx97+m1m3jU6VfuWx7MhR/xRbqbLzM0wyUpopKUMoV5w/PuSFHzg4frAE+hgdjNTehVzr8doDKdL8mP0Z+LQXiqUr+kEIckePQFcxeyMGePAghc7wh15CUO3pZQDMv65tu9CxXPRfk=
