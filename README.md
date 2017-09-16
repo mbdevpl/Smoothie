@@ -19,3 +19,11 @@ See documentation in /doc directory.
 See the license in /LICENSE.md file.
 
 See the complete source code in /src directory.
+
+## Requirements
+
+Qt >= 5.5.
+
+Also requires: Qt Widgets Technical (Qwt), Boost, FreeType Graphics Library (FTGL).
+
+Tested on Linux.
