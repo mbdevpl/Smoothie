@@ -15,8 +15,7 @@ sed -i'' "s|QWT_INSTALL_PREFIX    = /usr/local/qwt-\$\$QWT_VERSION-svn|QWT_INSTA
 
 echo "* building and installing QWT"
 
-source /opt/qt56/bin/qt56-env.sh
-#source /opt/qt58/bin/qt58-env.sh
+source "/opt/qt$1/bin/qt$1-env.sh"
 
 qmake --version
 qmake qwt.pro
