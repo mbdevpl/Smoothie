@@ -16,7 +16,7 @@ Copyright (C) 2013-2014  Mateusz Bysiek, http://mbdev.pl/
 
 See documentation in /doc directory.
 
-See the license in /LICENSE.md file.
+See the license in /LICENSE and /NOTICE files.
 
 See the complete source code in /src directory.
 
