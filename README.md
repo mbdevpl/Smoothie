@@ -1,7 +1,7 @@
 Smoothie
 ========
 
-[![build status from Travis CI](https://travis-ci.org/mbdevpl/Smoothie.svg?branch=master)](https://travis-ci.org/mbdevpl/Smoothie)
+[![build status from Travis CI](https://travis-ci.com/mbdevpl/Smoothie.svg?branch=master)](https://travis-ci.com/mbdevpl/Smoothie)
 [![license](https://img.shields.io/github/license/mbdevpl/Smoothie.svg)](https://github.com/mbdevpl/Smoothie)
 
 ## About
@@ -10,7 +10,7 @@ Static fluid/heat flow simulator.
 
 ## Author
 
-Copyright (C) 2013-2014  Mateusz Bysiek, http://mbdev.pl/
+Copyright (C) 2013-2014  Mateusz Bysiek  https://mbdevpl.github.io/
 
 ## More information
 
